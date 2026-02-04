@@ -10,12 +10,15 @@
     <meta name="description" content="UBS Banque en ligne : ouvrez un compte sécurisé, obtenez votre RIB automatiquement et suivez vos virements en temps réel avec validation bancaire.">
     <meta property="og:title" content="UBS Banque en ligne">
     <meta property="og:description" content="Ouvrez un compte sécurisé, obtenez votre RIB automatiquement et suivez vos virements en temps réel avec validation bancaire.">
-    <meta property="og:image" content="https://thepoorswiss.com/wp-content/uploads/2022/03/UBS-Bank-Review.jpg">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'bank/ubs-logo.png' %}">
+    <meta property="og:image:secure_url" content="{{ request.scheme }}://{{ request.get_host }}{% static 'bank/ubs-logo.png' %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:site_name" content="UBS Banque en ligne">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="UBS Banque en ligne">
     <meta name="twitter:description" content="Ouvrez un compte sécurisé, obtenez votre RIB automatiquement et suivez vos virements en temps réel avec validation bancaire.">
-    <meta name="twitter:image" content="https://thepoorswiss.com/wp-content/uploads/2022/03/UBS-Bank-Review.jpg">
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'bank/ubs-logo.png' %}">
     <link rel="icon" href="https://www.designyourway.net/blog/wp-content/uploads/2023/05/mainimage-1.jpg">
     <link rel="stylesheet" href="{% static 'bank/styles.css' %}">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
