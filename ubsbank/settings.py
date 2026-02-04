@@ -170,7 +170,7 @@ EMAIL_HOST_USER = os.getenv('UBS_SMTP_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('UBS_SMTP_PASSWORD', '')
 EMAIL_USE_SSL = os.getenv('UBS_SMTP_USE_SSL', '1') == '1'
 EMAIL_USE_TLS = os.getenv('UBS_SMTP_USE_TLS', '0') == '1'
-DEFAULT_FROM_EMAIL = os.getenv('UBS_DEFAULT_FROM_EMAIL', 'support@virement.net')
+DEFAULT_FROM_EMAIL = os.getenv('UBS_DEFAULT_FROM_EMAIL', 'UBS <support@virement.net>')
 
 UBS_LEGAL_SIEGE = os.getenv(
     'UBS_LEGAL_SIEGE',
