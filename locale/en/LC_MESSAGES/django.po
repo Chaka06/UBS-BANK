@@ -649,9 +649,6 @@ msgstr "Client"
 msgid "Support"
 msgstr "Support"
 
-msgid "Changement de mot de passe"
-msgstr "Password change"
-
 msgid "En cours"
 msgstr "Pending"
 

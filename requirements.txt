@@ -1,2 +1,4 @@
 django
 reportlab
+psycopg2-binary
+mysqlclient
