@@ -1,0 +1,14 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="card">
+    <h2>{% trans "Validation OTP" %}</h2>
+    <p>{% trans "Entrez le code reçu par email pour valider votre connexion." %}</p>
+    <form method="post" class="form-grid">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">{% trans "Valider" %}</button>
+    </form>
+</section>
+{% endblock %}

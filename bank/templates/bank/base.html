@@ -1,0 +1,134 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% trans "UBS Banque en Ligne" %}</title>
+    <meta name="description" content="UBS Banque en ligne : ouvrez un compte sécurisé, obtenez votre RIB automatiquement et suivez vos virements en temps réel avec validation bancaire.">
+    <meta property="og:title" content="UBS Banque en ligne">
+    <meta property="og:description" content="Ouvrez un compte sécurisé, obtenez votre RIB automatiquement et suivez vos virements en temps réel avec validation bancaire.">
+    <meta property="og:image" content="https://thepoorswiss.com/wp-content/uploads/2022/03/UBS-Bank-Review.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UBS Banque en ligne">
+    <meta name="twitter:description" content="Ouvrez un compte sécurisé, obtenez votre RIB automatiquement et suivez vos virements en temps réel avec validation bancaire.">
+    <meta name="twitter:image" content="https://thepoorswiss.com/wp-content/uploads/2022/03/UBS-Bank-Review.jpg">
+    <link rel="icon" href="https://www.designyourway.net/blog/wp-content/uploads/2023/05/mainimage-1.jpg">
+    <link rel="stylesheet" href="{% static 'bank/styles.css' %}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="brand">
+                <img class="logo-img" src="https://upload.wikimedia.org/wikipedia/commons/3/34/UBS_Logo.png" alt="UBS">
+                <span class="tagline">{% trans "Banque en ligne" %}</span>
+            </div>
+            <div class="header-actions">
+                {% if user.is_authenticated %}
+                    <a class="icon-btn" href="{% url 'notifications' %}" aria-label="Notifications">
+                        <i class="bx bxs-bell"></i>
+                    </a>
+                    <a class="btn btn-outline" href="{% url 'logout' %}">{% trans "Déconnexion" %}</a>
+                {% else %}
+                    <a class="btn btn-outline" href="{% url 'login' %}">{% trans "Se connecter" %}</a>
+                    <a class="btn btn-primary" href="{% url 'register' %}">{% trans "S'inscrire" %}</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        {% if user.is_authenticated %}
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <img class="logo-img" src="https://upload.wikimedia.org/wikipedia/commons/3/34/UBS_Logo.png" alt="UBS">
+                    <span class="tagline">{% trans "Banque en ligne" %}</span>
+                </div>
+                <nav class="sidebar-nav">
+                    <a href="{% url 'dashboard' %}">
+                        <i class="bx bxs-home"></i>
+                        {% trans "Accueil" %}
+                    </a>
+                    <a href="{% url 'transfers' %}">
+                        <i class="bx bxs-time"></i>
+                        {% trans "Virements" %}
+                    </a>
+                    <a href="{% url 'beneficiaries' %}">
+                        <i class="bx bxs-user-check"></i>
+                        {% trans "Bénéficiaires" %}
+                    </a>
+                    <a href="{% url 'parameters' %}">
+                        <i class="bx bxs-cog"></i>
+                        {% trans "Paramètres" %}
+                    </a>
+                    <a href="{% url 'profile' %}">
+                        <i class="bx bxs-user"></i>
+                        {% trans "Profil" %}
+                    </a>
+                    <a href="{% url 'logout' %}">
+                        <i class="bx bx-log-out"></i>
+                        {% trans "Déconnexion" %}
+                    </a>
+                </nav>
+            </aside>
+        {% endif %}
+
+        <main class="container main-content">
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="message {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        {% if user.is_authenticated %}
+            <nav class="bottom-nav">
+                <a class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">
+                    <i class="bx bxs-home"></i>
+                    <span>{% trans "Accueil" %}</span>
+                </a>
+                <a class="{% if request.resolver_match.url_name == 'transfers' %}active{% endif %}" href="{% url 'transfers' %}">
+                    <i class="bx bxs-time"></i>
+                    <span>{% trans "Virements" %}</span>
+                </a>
+                <a class="{% if request.resolver_match.url_name == 'beneficiaries' %}active{% endif %}" href="{% url 'beneficiaries' %}">
+                    <i class="bx bxs-user-check"></i>
+                    <span>{% trans "Bénéficiaires" %}</span>
+                </a>
+                <a class="{% if request.resolver_match.url_name == 'parameters' %}active{% endif %}" href="{% url 'parameters' %}">
+                    <i class="bx bxs-cog"></i>
+                    <span>{% trans "Paramètres" %}</span>
+                </a>
+            </nav>
+        {% else %}
+            <div class="container">
+                <p>{% trans "UBS Banque en ligne - Service sécurisé et conforme." %}</p>
+            </div>
+        {% endif %}
+    </footer>
+
+    <script>
+        document.querySelectorAll('.toggle-password').forEach((button) => {
+            const labelShow = button.dataset.labelShow || button.getAttribute('aria-label') || '';
+            const labelHide = button.dataset.labelHide || '';
+            button.addEventListener('click', () => {
+                const input = button.closest('.password-field')?.querySelector('input');
+                if (!input) return;
+                const isVisible = input.type === 'text';
+                input.type = isVisible ? 'password' : 'text';
+                button.classList.toggle('is-visible', !isVisible);
+                button.setAttribute('aria-label', isVisible ? labelShow : labelHide || labelShow);
+            });
+        });
+    </script>
+</body>
+</html>

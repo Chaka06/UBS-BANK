@@ -1,0 +1,662 @@
+msgid ""
+msgstr ""
+"Language: de\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "UBS Banque en Ligne"
+msgstr "UBS Online-Banking"
+
+msgid "UBS Banque en ligne"
+msgstr "UBS Online-Banking"
+
+msgid "Banque en ligne"
+msgstr "Online-Bank"
+
+msgid "Accueil"
+msgstr "Startseite"
+
+msgid "Virements"
+msgstr "Überweisungen"
+
+msgid "Bénéficiaires"
+msgstr "Begünstigte"
+
+msgid "Paramètres"
+msgstr "Einstellungen"
+
+msgid "Profil"
+msgstr "Profil"
+
+msgid "Déconnexion"
+msgstr "Abmelden"
+
+msgid "Se connecter"
+msgstr "Anmelden"
+
+msgid "S'inscrire"
+msgstr "Registrieren"
+
+msgid "UBS Banque en ligne - Service sécurisé et conforme."
+msgstr "UBS Online-Banking - Sicherer und konformer Service."
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Gestionnaire"
+msgstr "Berater"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Téléphone"
+msgstr "Telefon"
+
+msgid "Votre gestionnaire n'est pas encore assigné."
+msgstr "Ihr Berater ist noch nicht zugewiesen."
+
+msgid "Carte virtuelle"
+msgstr "Virtuelle Karte"
+
+msgid "Transférer"
+msgstr "Überweisen"
+
+msgid "RIB"
+msgstr "Bankverbindung"
+
+msgid "UBS Banque Premium"
+msgstr "UBS Premium Banking"
+
+msgid "Votre conseiller dédié et un suivi bancaire clair, sécurisé et rapide."
+msgstr "Ihr persönlicher Berater und ein klarer, sicherer und schneller Banküberblick."
+
+msgid "Votre compte bancaire est en cours de création."
+msgstr "Ihr Bankkonto wird erstellt."
+
+msgid "Transactions récentes"
+msgstr "Letzte Transaktionen"
+
+msgid "Tout voir"
+msgstr "Alle anzeigen"
+
+msgid "Aucune transaction récente."
+msgstr "Keine aktuellen Transaktionen."
+
+msgid "Bénéficiaire"
+msgstr "Begünstigter"
+
+msgid "Montant"
+msgstr "Betrag"
+
+msgid "Statut"
+msgstr "Status"
+
+msgid "Référence"
+msgstr "Referenz"
+
+msgid "Motif de rejet"
+msgstr "Ablehnungsgrund"
+
+msgid "Télécharger le PDF"
+msgstr "PDF herunterladen"
+
+msgid "Retour"
+msgstr "Zurück"
+
+msgid "Nouveau"
+msgstr "Neu"
+
+msgid "Voir détails"
+msgstr "Details anzeigen"
+
+msgid "Aucun virement enregistré."
+msgstr "Keine Überweisung erfasst."
+
+msgid "Nouveau virement"
+msgstr "Neue Überweisung"
+
+msgid "Solde disponible"
+msgstr "Verfügbares Guthaben"
+
+msgid "Lancer le virement"
+msgstr "Überweisung senden"
+
+msgid "Enregistrer"
+msgstr "Speichern"
+
+msgid "Liste"
+msgstr "Liste"
+
+msgid "Aucun bénéficiaire enregistré."
+msgstr "Kein Begünstigter gespeichert."
+
+msgid "Notifications"
+msgstr "Benachrichtigungen"
+
+msgid "Tout supprimer"
+msgstr "Alles löschen"
+
+msgid "Supprimer"
+msgstr "Löschen"
+
+msgid "Aucune notification."
+msgstr "Keine Benachrichtigungen."
+
+msgid "Support client"
+msgstr "Kundensupport"
+
+msgid "Réinitialiser"
+msgstr "Zurücksetzen"
+
+msgid "Aucune conversation pour le moment."
+msgstr "Derzeit keine Konversation."
+
+msgid "Envoyer"
+msgstr "Senden"
+
+msgid "Choisissez la langue du système."
+msgstr "Wählen Sie die Systemsprache."
+
+msgid "Accédez au chat pour contacter le support UBS."
+msgstr "Greifen Sie auf den Chat zu, um den UBS-Support zu kontaktieren."
+
+msgid "Ouvrir le chat"
+msgstr "Chat öffnen"
+
+msgid "Nom"
+msgstr "Nachname"
+
+msgid "Prénom"
+msgstr "Vorname"
+
+msgid "Adresse"
+msgstr "Adresse"
+
+msgid "Pays"
+msgstr "Land"
+
+msgid "Les informations personnelles ne peuvent pas être modifiées."
+msgstr "Persönliche Informationen können nicht geändert werden."
+
+msgid "Appel téléphonique"
+msgstr "Telefonanruf"
+
+msgid "Appel"
+msgstr "Anruf"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Changer le mot de passe"
+msgstr "Passwort ändern"
+
+msgid "Recevoir le code OTP"
+msgstr "OTP-Code erhalten"
+
+msgid "Validation OTP"
+msgstr "OTP-Bestätigung"
+
+msgid "Entrez le code reçu pour confirmer le changement de mot de passe."
+msgstr "Geben Sie den erhaltenen Code ein, um die Passwortänderung zu bestätigen."
+
+msgid "Entrez le code reçu par email pour valider votre connexion."
+msgstr "Geben Sie den per E-Mail erhaltenen Code ein, um die Anmeldung zu bestätigen."
+
+msgid "Valider"
+msgstr "Bestätigen"
+
+msgid "Merci pour votre inscription"
+msgstr "Danke für Ihre Registrierung"
+
+msgid "Vos informations ont été transmises aux services compétents de la banque."
+msgstr "Ihre Informationen wurden an die zuständigen Stellen der Bank übermittelt."
+
+msgid "Vous recevrez un email lorsque votre compte sera validé."
+msgstr "Sie erhalten eine E-Mail, sobald Ihr Konto validiert ist."
+
+msgid "Dans le cas contraire, vous serez informé des raisons du refus."
+msgstr "Andernfalls werden Sie über die Gründe der Ablehnung informiert."
+
+msgid "Retour à l'accueil"
+msgstr "Zur Startseite"
+
+msgid "Créer un compte"
+msgstr "Konto erstellen"
+
+msgid "Merci de remplir les informations ci-dessous."
+msgstr "Bitte füllen Sie die folgenden Informationen aus."
+
+msgid "Connexion"
+msgstr "Anmeldung"
+
+msgid "Un code OTP vous sera envoyé par email."
+msgstr "Ein OTP-Code wird Ihnen per E-Mail gesendet."
+
+msgid "Votre compte sécurisé, validé par la banque"
+msgstr "Ihr sicheres Konto, von der Bank validiert"
+
+msgid "Ouvrez un compte en ligne, recevez un RIB conforme à votre pays et gérez vos virements avec un gestionnaire dédié."
+msgstr "Eröffnen Sie ein Online-Konto, erhalten Sie eine landeskonforme Bankverbindung und verwalten Sie Überweisungen mit einem persönlichen Berater."
+
+msgid "Ouvrir un compte"
+msgstr "Konto eröffnen"
+
+msgid "Sécurité bancaire"
+msgstr "Bankensicherheit"
+
+msgid "Validation KYC"
+msgstr "KYC-Prüfung"
+
+msgid "Support dédié"
+msgstr "Persönlicher Support"
+
+msgid "Carte UBS"
+msgstr "UBS-Karte"
+
+msgid "RIB automatique"
+msgstr "Automatische Bankverbindung"
+
+msgid "IBAN et BIC générés dès validation du compte."
+msgstr "IBAN und BIC werden nach Kontovalidierung erzeugt."
+
+msgid "Virements supervisés"
+msgstr "Überwachte Überweisungen"
+
+msgid "Chaque opération est validée par l’administrateur."
+msgstr "Jede Transaktion wird vom Administrator validiert."
+
+msgid "Suivi clair : en cours, traitée, rejetée."
+msgstr "Klare Nachverfolgung: ausstehend, verarbeitet, abgelehnt."
+
+msgid "Gestionnaire dédié"
+msgstr "Persönlicher Berater"
+
+msgid "Un conseiller UBS pour vos demandes."
+msgstr "Ein UBS-Berater für Ihre Anliegen."
+
+msgid "Comment ça fonctionne"
+msgstr "So funktioniert es"
+
+msgid "Inscription complète"
+msgstr "Vollständige Registrierung"
+
+msgid "Identité, documents, résidence et pays."
+msgstr "Identität, Dokumente, Wohnsitz und Land."
+
+msgid "Validation bancaire"
+msgstr "Bankprüfung"
+
+msgid "Contrôle par nos services pour activer le compte."
+msgstr "Prüfung durch unsere Stellen zur Kontofreischaltung."
+
+msgid "Accès sécurisé"
+msgstr "Sicherer Zugang"
+
+msgid "Connexion OTP et gestion des virements."
+msgstr "OTP-Anmeldung und Überweisungsverwaltung."
+
+msgid "Commencez avec UBS"
+msgstr "Starten Sie mit UBS"
+
+msgid "Une interface claire, mobile-first, et un suivi bancaire complet."
+msgstr "Eine klare, mobile-first Oberfläche und vollständige Bankübersicht."
+
+msgid "Créer mon compte"
+msgstr "Mein Konto erstellen"
+
+msgid "Détails du virement #%(transfer_id)s"
+msgstr "Überweisungsdetails #%(transfer_id)s"
+
+msgid "Statut: %(status)s"
+msgstr "Status: %(status)s"
+
+msgid "Compte: %(account)s"
+msgstr "Konto: %(account)s"
+
+msgid "BIC/SWIFT: %(bic)s"
+msgstr "BIC/SWIFT: %(bic)s"
+
+msgid "Afficher le mot de passe"
+msgstr "Passwort anzeigen"
+
+msgid "Masquer le mot de passe"
+msgstr "Passwort verbergen"
+
+msgid "Votre compte est en cours de validation. Vous recevrez un email dès activation."
+msgstr "Ihr Konto wird geprüft. Sie erhalten eine E-Mail nach der Aktivierung."
+
+msgid "Code de connexion UBS"
+msgstr "UBS-Anmeldecode"
+
+msgid "Votre code OTP est : %(code)s. Il est valable 10 minutes."
+msgstr "Ihr OTP-Code ist: %(code)s. Er ist 10 Minuten gültig."
+
+msgid "Connexion sécurisée"
+msgstr "Sichere Anmeldung"
+
+msgid "Bonjour %(first_name)s,"
+msgstr "Hallo %(first_name)s,"
+
+msgid "Votre code OTP est : %(code)s"
+msgstr "Ihr OTP-Code ist: %(code)s"
+
+msgid "Le code est valable 10 minutes."
+msgstr "Der Code ist 10 Minuten gültig."
+
+msgid "Ne partagez jamais ce code."
+msgstr "Teilen Sie diesen Code niemals."
+
+msgid "Si vous n'êtes pas à l'origine de cette demande, contactez votre gestionnaire."
+msgstr "Falls Sie dies nicht angefordert haben, kontaktieren Sie Ihren Berater."
+
+msgid "Impossible d'envoyer l'OTP. Vérifiez la configuration SMTP."
+msgstr "OTP konnte nicht gesendet werden. Prüfen Sie die SMTP-Konfiguration."
+
+msgid "Code OTP invalide ou expiré."
+msgstr "Ungültiger oder abgelaufener OTP-Code."
+
+msgid "Validation du changement de mot de passe"
+msgstr "Bestätigung der Passwortänderung"
+
+msgid "Changement de mot de passe"
+msgstr "Passwortänderung"
+
+msgid "Votre mot de passe a été modifié."
+msgstr "Ihr Passwort wurde geändert."
+
+msgid "Bénéficiaire enregistré."
+msgstr "Begünstigter gespeichert."
+
+msgid "Compte bancaire indisponible."
+msgstr "Bankkonto nicht verfügbar."
+
+msgid "Votre compte est bloqué. Contactez votre gestionnaire."
+msgstr "Ihr Konto ist gesperrt. Kontaktieren Sie Ihren Berater."
+
+msgid "Les virements sont suspendus. Contactez votre gestionnaire."
+msgstr "Überweisungen sind gesperrt. Kontaktieren Sie Ihren Berater."
+
+msgid "Ajoutez un bénéficiaire avant de faire un virement."
+msgstr "Fügen Sie einen Begünstigten hinzu, bevor Sie eine Überweisung durchführen."
+
+msgid "Solde insuffisant."
+msgstr "Unzureichendes Guthaben."
+
+msgid "Virement en cours"
+msgstr "Überweisung ausstehend"
+
+msgid "Votre virement de %(amount)s %(currency)s vers %(beneficiary)s est en cours de validation."
+msgstr "Ihre Überweisung von %(amount)s %(currency)s an %(beneficiary)s wird validiert."
+
+msgid "Montant: %(amount)s %(currency)s"
+msgstr "Betrag: %(amount)s %(currency)s"
+
+msgid "Bénéficiaire: %(beneficiary)s"
+msgstr "Begünstigter: %(beneficiary)s"
+
+msgid "Statut: en cours de validation"
+msgstr "Status: in Validierung"
+
+msgid "Bordereau en pièce jointe."
+msgstr "Überweisungsbeleg im Anhang."
+
+msgid "Vous serez informé dès validation."
+msgstr "Sie werden nach der Validierung informiert."
+
+msgid "Virement entrant en cours"
+msgstr "Eingehende Überweisung ausstehend"
+
+msgid "Un virement de %(amount)s %(currency)s est en cours vers votre compte %(account)s."
+msgstr "Eine Überweisung von %(amount)s %(currency)s ist für Ihr Konto %(account)s ausstehend."
+
+msgid "Virement entrant"
+msgstr "Eingehende Überweisung"
+
+msgid "Bonjour %(full_name)s,"
+msgstr "Hallo %(full_name)s,"
+
+msgid "Référence: %(reference)s"
+msgstr "Referenz: %(reference)s"
+
+msgid "Vous recevrez une confirmation après validation."
+msgstr "Sie erhalten eine Bestätigung nach der Validierung."
+
+msgid "Virement enregistré. Statut: en cours."
+msgstr "Überweisung erfasst. Status: ausstehend."
+
+msgid "Notification supprimée."
+msgstr "Benachrichtigung gelöscht."
+
+msgid "Toutes les notifications ont été supprimées."
+msgstr "Alle Benachrichtigungen wurden gelöscht."
+
+msgid "Langue mise à jour."
+msgstr "Sprache aktualisiert."
+
+msgid "Message envoyé au support."
+msgstr "Nachricht an den Support gesendet."
+
+msgid "Conversation réinitialisée."
+msgstr "Konversation zurückgesetzt."
+
+msgid "Compte UBS activé"
+msgstr "UBS-Konto aktiviert"
+
+msgid "Votre compte est maintenant actif. Vous pouvez vous connecter avec votre adresse mail et votre mot de passe."
+msgstr "Ihr Konto ist jetzt aktiv. Sie können sich mit Ihrer E-Mail-Adresse und Ihrem Passwort anmelden."
+
+msgid "Compte activé"
+msgstr "Konto aktiviert"
+
+msgid "Votre compte est maintenant actif."
+msgstr "Ihr Konto ist jetzt aktiv."
+
+msgid "Vous pouvez vous connecter avec votre adresse mail et votre mot de passe."
+msgstr "Sie können sich mit Ihrer E-Mail-Adresse und Ihrem Passwort anmelden."
+
+msgid "Votre RIB est joint à cet email."
+msgstr "Ihre Bankverbindung ist dieser E-Mail beigefügt."
+
+msgid "Bienvenue chez UBS Banque en ligne."
+msgstr "Willkommen bei UBS Online-Banking."
+
+msgid "Votre compte UBS est bloqué"
+msgstr "Ihr UBS-Konto ist gesperrt"
+
+msgid "Votre compte a été bloqué. Motif: %(reason)s. Frais: %(fee)s %(currency)s."
+msgstr "Ihr Konto wurde gesperrt. Grund: %(reason)s. Gebühren: %(fee)s %(currency)s."
+
+msgid "Non précisé"
+msgstr "Nicht angegeben"
+
+msgid "Compte bloqué"
+msgstr "Konto gesperrt"
+
+msgid "Motif: %(reason)s"
+msgstr "Grund: %(reason)s"
+
+msgid "Frais: %(fee)s %(currency)s"
+msgstr "Gebühren: %(fee)s %(currency)s"
+
+msgid "Veuillez contacter votre gestionnaire."
+msgstr "Bitte kontaktieren Sie Ihren Berater."
+
+msgid "UBS Banque en ligne."
+msgstr "UBS Online-Banking."
+
+msgid "Votre compte UBS est débloqué"
+msgstr "Ihr UBS-Konto ist entsperrt"
+
+msgid "Votre compte a été débloqué. Vous pouvez utiliser vos services."
+msgstr "Ihr Konto wurde entsperrt. Sie können Ihre Dienste nutzen."
+
+msgid "Compte débloqué"
+msgstr "Konto entsperrt"
+
+msgid "Votre compte a été débloqué."
+msgstr "Ihr Konto wurde entsperrt."
+
+msgid "Vous pouvez utiliser vos services."
+msgstr "Sie können Ihre Dienste nutzen."
+
+msgid "Virements suspendus"
+msgstr "Überweisungen gesperrt"
+
+msgid "Les virements sont suspendus sur votre compte. Motif: %(reason)s."
+msgstr "Überweisungen sind auf Ihrem Konto gesperrt. Grund: %(reason)s."
+
+msgid "Virements rétablis"
+msgstr "Überweisungen wieder verfügbar"
+
+msgid "Les virements sont à nouveau disponibles sur votre compte."
+msgstr "Überweisungen sind auf Ihrem Konto wieder verfügbar."
+
+msgid "Les virements sont à nouveau disponibles."
+msgstr "Überweisungen sind wieder verfügbar."
+
+msgid "Notification UBS: %(title)s"
+msgstr "UBS-Benachrichtigung: %(title)s"
+
+msgid "Virement rejeté"
+msgstr "Überweisung abgelehnt"
+
+msgid "Votre virement vers %(beneficiary)s a été rejeté. Motif: %(reason)s."
+msgstr "Ihre Überweisung an %(beneficiary)s wurde abgelehnt. Grund: %(reason)s."
+
+msgid "Emetteur: %(first_name)s %(last_name)s"
+msgstr "Absender: %(first_name)s %(last_name)s"
+
+msgid "Statut: Rejeté"
+msgstr "Status: Abgelehnt"
+
+msgid "Virement traité"
+msgstr "Überweisung verarbeitet"
+
+msgid "Votre virement vers %(beneficiary)s a été traité avec succès."
+msgstr "Ihre Überweisung an %(beneficiary)s wurde erfolgreich verarbeitet."
+
+msgid "Statut: Traitée"
+msgstr "Status: Verarbeitet"
+
+msgid "Virement reçu"
+msgstr "Überweisung erhalten"
+
+msgid "Le virement en provenance de %(first_name)s %(last_name)s est maintenant traité. Statut: Traitée."
+msgstr "Die Überweisung von %(first_name)s %(last_name)s wurde verarbeitet. Status: Verarbeitet."
+
+msgid "Le virement en provenance de %(first_name)s %(last_name)s a été rejeté. Statut: Rejeté."
+msgstr "Die Überweisung von %(first_name)s %(last_name)s wurde abgelehnt. Status: Abgelehnt."
+
+msgid "Mot de passe"
+msgstr "Passwort"
+
+msgid "Confirmer le mot de passe"
+msgstr "Passwort bestätigen"
+
+msgid "Adresse mail"
+msgstr "E-Mail-Adresse"
+
+msgid "Date de naissance"
+msgstr "Geburtsdatum"
+
+msgid "Numéro de téléphone"
+msgstr "Telefonnummer"
+
+msgid "Adresse de résidence"
+msgstr "Wohnadresse"
+
+msgid "Pièce d'identité (recto)"
+msgstr "Ausweisdokument (Vorderseite)"
+
+msgid "Pièce d'identité (verso)"
+msgstr "Ausweisdokument (Rückseite)"
+
+msgid "Les mots de passe ne correspondent pas."
+msgstr "Passwörter stimmen nicht überein."
+
+msgid "Identifiants invalides."
+msgstr "Ungültige Zugangsdaten."
+
+msgid "Code OTP"
+msgstr "OTP-Code"
+
+msgid "Nom et prénom"
+msgstr "Vor- und Nachname"
+
+msgid "Numéro de compte"
+msgstr "Kontonummer"
+
+msgid "Code BIC / SWIFT"
+msgstr "BIC/SWIFT-Code"
+
+msgid "Bénéficiaire / gestionnaire"
+msgstr "Begünstigter / Berater"
+
+msgid "Le montant doit être supérieur à 0."
+msgstr "Der Betrag muss größer als 0 sein."
+
+msgid "Nouveau mot de passe"
+msgstr "Neues Passwort"
+
+msgid "Langue du système"
+msgstr "Systemsprache"
+
+msgid "Votre message"
+msgstr "Ihre Nachricht"
+
+msgid "France"
+msgstr "Frankreich"
+
+msgid "Italie"
+msgstr "Italien"
+
+msgid "Allemagne"
+msgstr "Deutschland"
+
+msgid "Espagne"
+msgstr "Spanien"
+
+msgid "Suisse"
+msgstr "Schweiz"
+
+msgid "Belgique"
+msgstr "Belgien"
+
+msgid "Luxembourg"
+msgstr "Luxemburg"
+
+msgid "Pays-Bas"
+msgstr "Niederlande"
+
+msgid "Royaume-Uni"
+msgstr "Vereinigtes Königreich"
+
+msgid "Français"
+msgstr "Französisch"
+
+msgid "English"
+msgstr "Englisch"
+
+msgid "Deutsch"
+msgstr "Deutsch"
+
+msgid "Español"
+msgstr "Spanisch"
+
+msgid "Client"
+msgstr "Kunde"
+
+msgid "Support"
+msgstr "Support"
+
+msgid "Changement de mot de passe"
+msgstr "Passwortänderung"
+
+msgid "En cours"
+msgstr "Ausstehend"
+
+msgid "Traitée"
+msgstr "Verarbeitet"
+
+msgid "Rejetée"
+msgstr "Abgelehnt"

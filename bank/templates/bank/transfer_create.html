@@ -1,0 +1,19 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="mobile-screen">
+    <div class="page-header">
+        <h2>{% trans "Nouveau virement" %}</h2>
+    </div>
+    <div class="card-mobile">
+        <p class="muted">{% trans "Solde disponible" %}</p>
+        <h3>{{ bank_account.balance }} {{ bank_account.currency }}</h3>
+        <form method="post" class="form-grid">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">{% trans "Lancer le virement" %}</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="card">
+    <h2>{% trans "Créer un compte" %}</h2>
+    <p>{% trans "Merci de remplir les informations ci-dessous." %}</p>
+    <form method="post" enctype="multipart/form-data" class="form-grid">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div class="form-field">
+                {{ field.label_tag }}
+                {% if field.field.widget.input_type == "password" %}
+                    <div class="password-field">
+                        {{ field }}
+                        <button type="button"
+                                class="toggle-password"
+                                aria-label="{% trans 'Afficher le mot de passe' %}"
+                                data-label-show="{% trans 'Afficher le mot de passe' %}"
+                                data-label-hide="{% trans 'Masquer le mot de passe' %}">
+                            <span class="icon-show">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 5C6.5 5 2.1 8.4 1 12c1.1 3.6 5.5 7 11 7s9.9-3.4 11-7c-1.1-3.6-5.5-7-11-7Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/>
+                                </svg>
+                            </span>
+                            <span class="icon-hide">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M3 5.3 4.3 4 20 19.7 18.7 21l-3-3A11.7 11.7 0 0 1 12 19C6.5 19 2.1 15.6 1 12c.5-1.7 1.7-3.4 3.3-4.8L3 5.3Zm6.6 6.6a2.5 2.5 0 0 0 3.4 3.4l-3.4-3.4Zm3.4-4.8A4 4 0 0 1 17 12a4 4 0 0 1-.3 1.6l-2-2a2 2 0 0 0-2.6-2.6l-2-2A4 4 0 0 1 13 7Z"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                {% else %}
+                    {{ field }}
+                {% endif %}
+                {% for error in field.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button class="btn btn-primary" type="submit">{% trans "S'inscrire" %}</button>
+    </form>
+</section>
+{% endblock %}

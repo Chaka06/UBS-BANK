@@ -1,0 +1,42 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="mobile-screen">
+    <div class="page-header">
+        <h2>{% trans "Support client" %}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-outline" type="submit" name="reset_chat">{% trans "Réinitialiser" %}</button>
+        </form>
+    </div>
+    <div class="card-mobile">
+        <div class="chat-thread">
+            {% if support_messages %}
+                {% for message in support_messages %}
+                    <div class="chat-bubble {% if message.sender_type == 'admin' %}from-admin{% else %}from-user{% endif %}">
+                        <p>{{ message.message }}</p>
+                        <span class="muted">{{ message.created_at }}</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="muted">{% trans "Aucune conversation pour le moment." %}</p>
+            {% endif %}
+        </div>
+        <form method="post" class="form-grid">
+            {% csrf_token %}
+            {{ message_form.non_field_errors }}
+            {% for field in message_form %}
+                <div class="form-field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button class="btn btn-primary" type="submit" name="send_message">{% trans "Envoyer" %}</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
