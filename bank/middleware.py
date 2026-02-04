@@ -14,7 +14,7 @@ class UserLanguageMiddleware:
                 translation.activate(preferred)
                 request.LANGUAGE_CODE = preferred
                 if hasattr(request, 'session'):
-                    request.session[translation.LANGUAGE_SESSION_KEY] = preferred
+                    request.session['django_language'] = preferred
 
         response = self.get_response(request)
 

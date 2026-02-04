@@ -397,7 +397,7 @@ def parameters(request):
                 user = language_form.save()
                 user.save(update_fields=['preferred_language'])
                 translation.activate(user.preferred_language)
-                request.session[translation.LANGUAGE_SESSION_KEY] = user.preferred_language
+                request.session['django_language'] = user.preferred_language
                 messages.success(request, _('Langue mise à jour.'))
                 return redirect('parameters')
 
