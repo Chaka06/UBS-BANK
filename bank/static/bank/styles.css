@@ -459,6 +459,14 @@ main.container > section {
     border: 1px solid #d7dbe0;
 }
 
+@media (max-width: 768px) {
+    .form-grid input,
+    .form-grid select,
+    .form-grid textarea {
+        font-size: 16px;
+    }
+}
+
 .form-grid button.btn {
     width: 100%;
 }
