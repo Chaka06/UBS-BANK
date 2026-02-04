@@ -394,7 +394,8 @@ def parameters(request):
         if 'save_language' in request.POST:
             language_form = LanguagePreferenceForm(request.POST, instance=request.user)
             if language_form.is_valid():
-                user = language_form.save(update_fields=['preferred_language'])
+                user = language_form.save()
+                user.save(update_fields=['preferred_language'])
                 translation.activate(user.preferred_language)
                 request.session[translation.LANGUAGE_SESSION_KEY] = user.preferred_language
                 messages.success(request, _('Langue mise à jour.'))
