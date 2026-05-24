@@ -127,12 +127,25 @@ main.container > section {
 }
 
 .btn {
-    padding: 0.6rem 1rem;
-    border-radius: 6px;
+    padding: 0.6rem 1.1rem;
+    border-radius: 8px;
     text-decoration: none;
     display: inline-block;
     font-weight: 600;
     border: 1px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: opacity 0.15s, background 0.15s;
+    text-align: center;
+}
+
+.btn:hover {
+    opacity: 0.87;
+}
+
+.btn-primary:hover {
+    background: #aa0000;
 }
 
 .btn-primary {
@@ -431,10 +444,19 @@ main.container > section {
 
 .card {
     background: #fff;
-    padding: 1.6rem;
-    border-radius: 12px;
+    padding: 1.8rem;
+    border-radius: 14px;
     margin: 1.5rem 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid #eef0f2;
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 1.2rem;
+        margin: 1rem 0;
+        border-radius: 10px;
+    }
 }
 
 .card-header {
@@ -454,9 +476,24 @@ main.container > section {
 .form-grid input,
 .form-grid select,
 .form-grid textarea {
-    padding: 0.6rem;
-    border-radius: 6px;
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
     border: 1px solid #d7dbe0;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #1c1f24;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    display: block;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+    border-color: #cc0000;
+    box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -475,7 +512,27 @@ main.container > section {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.form-field label,
+.form-grid label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #374151;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.form-grid button.btn[type="submit"],
+.form-grid > button.btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-top: 0.4rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
 }
 
 .password-field {
@@ -1088,11 +1145,12 @@ main.container > section {
 }
 
 .mobile-screen {
-    max-width: 480px;
+    max-width: 560px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    width: 100%;
 }
 
 .dashboard-screen {
@@ -1385,3 +1443,152 @@ main.container > section {
         flex-wrap: nowrap;
     }
 }
+
+/* ── Sidebar active link ── */
+.sidebar-nav a.active,
+.sidebar-nav a:hover {
+    background: #fff0f0;
+    color: #cc0000;
+}
+
+.sidebar-nav a.active i,
+.sidebar-nav a:hover i {
+    color: #cc0000;
+}
+
+/* ── Mobile screen wider on desktop ── */
+@media (min-width: 1024px) {
+    .mobile-screen {
+        max-width: 680px;
+    }
+}
+
+/* ── Global select arrow fix ── */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236c737f' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    padding-right: 2.2rem;
+}
+
+/* ── File input ── */
+input[type="file"] {
+    width: 100%;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #6c737f;
+}
+
+/* ── Table responsive ── */
+@media (max-width: 640px) {
+    .table thead {
+        display: none;
+    }
+    .table tr {
+        display: block;
+        margin-bottom: 1rem;
+        background: #fff;
+        border-radius: 10px;
+        padding: 0.8rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .table td {
+        display: flex;
+        justify-content: space-between;
+        border: none;
+        padding: 0.3rem 0;
+        font-size: 0.9rem;
+    }
+    .table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #6c737f;
+        flex-shrink: 0;
+        margin-right: 0.5rem;
+    }
+}
+
+/* ── Profile row wrap on small screens ── */
+@media (max-width: 480px) {
+    .profile-row {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+    .balance {
+        font-size: 1.3rem;
+    }
+    .card-balance h2 {
+        font-size: 1.6rem;
+    }
+    .action-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .summary-grid,
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+}
+
+/* ── Notification items ── */
+.notification-item {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid #eef0f2;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cc0000;
+    flex-shrink: 0;
+}
+
+/* ── Chat improvements ── */
+@media (max-width: 480px) {
+    .chat-bubble {
+        max-width: 92%;
+        font-size: 0.92rem;
+    }
+}
+
+/* ── Form card max-width for auth pages ── */
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+    font-size: 1.4rem;
+}
+
+.card > .form-grid {
+    margin-top: 1.2rem;
+}
+
+/* ── Header responsive ── */
+@media (max-width: 400px) {
+    .header-actions .btn {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.85rem;
+    }
+    .tagline {
+        display: none;
+    }
+}
+
