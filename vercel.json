@@ -4,16 +4,10 @@
     {
       "src": "ubsbank/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb" }
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "staticfiles" }
+      "config": { "maxLambdaSize": "50mb" }
     }
   ],
   "routes": [
-    { "src": "/static/(.*)", "dest": "/static/$1" },
     { "src": "/(.*)", "dest": "ubsbank/wsgi.py" }
   ]
 }

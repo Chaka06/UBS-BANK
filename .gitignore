@@ -9,5 +9,5 @@ __pycache__/
 env/
 venv/
 media/
-staticfiles/
+# staticfiles/ committed for WhiteNoise on Vercel
 *.log
