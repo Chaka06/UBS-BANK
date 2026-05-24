@@ -1,0 +1,42 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="mobile-screen">
+    <div class="page-header">
+        <h2>{% trans "Bénéficiaires" %}</h2>
+    </div>
+    <div class="card-mobile">
+        <form method="post" class="form-grid">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">{% trans "Enregistrer" %}</button>
+        </form>
+    </div>
+
+    <div class="card-mobile">
+        <h3>{% trans "Liste" %}</h3>
+        {% if beneficiaries %}
+            <div class="list-card">
+                {% for item in beneficiaries %}
+                    <div class="list-item beneficiary-item">
+                        <div class="list-icon">
+                            <i class="bx bxs-user"></i>
+                        </div>
+                        <div class="list-body">
+                            <p class="list-title">{{ item.full_name }}</p>
+                            <span class="muted">{{ item.email }}</span>
+                            <div class="list-sub">
+                                <span>{% blocktrans with account=item.account_number %}Compte: {{ account }}{% endblocktrans %}</span>
+                                <span>{% blocktrans with bic=item.bic_swift %}BIC/SWIFT: {{ bic }}{% endblocktrans %}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="muted">{% trans "Aucun bénéficiaire enregistré." %}</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

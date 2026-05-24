@@ -1,0 +1,33 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="mobile-screen">
+    <div class="page-header">
+        <h2>{% trans "Virements" %}</h2>
+        <a class="btn btn-primary" href="{% url 'transfer_create' %}">{% trans "Nouveau" %}</a>
+    </div>
+
+    {% if transfers %}
+        <div class="list-card">
+            {% for transfer in transfers %}
+                <a class="list-item list-link" href="{% url 'transfer_detail' transfer.id %}">
+                    <div class="list-icon">
+                        <i class="bx bx-transfer"></i>
+                    </div>
+                    <div class="list-body">
+                        <p class="list-title">{{ transfer.beneficiary.full_name }}</p>
+                        <span class="muted">{% blocktrans with status=transfer.get_status_display %}Statut: {{ status }}{% endblocktrans %}</span>
+                    </div>
+                    <div class="list-right">
+                        <span class="amount-negative">-{{ transfer.amount }} €</span>
+                        <span class="muted">{% trans "Voir détails" %}</span>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="muted">{% trans "Aucun virement enregistré." %}</p>
+    {% endif %}
+</section>
+{% endblock %}

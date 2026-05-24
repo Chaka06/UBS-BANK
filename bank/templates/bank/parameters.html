@@ -1,0 +1,33 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="mobile-screen">
+    <div class="page-header">
+        <h2>{% trans "Paramètres" %}</h2>
+    </div>
+    <div class="card-mobile">
+        <p class="muted">{% trans "Choisissez la langue du système." %}</p>
+        <form method="post" class="form-grid">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                <div class="form-field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button class="btn btn-primary" type="submit" name="save_language">{% trans "Enregistrer" %}</button>
+        </form>
+    </div>
+
+    <div class="card-mobile">
+        <h3>{% trans "Support client" %}</h3>
+        <p class="muted">{% trans "Accédez au chat pour contacter le support UBS." %}</p>
+        <a class="btn btn-outline" href="{% url 'support_chat' %}">{% trans "Ouvrir le chat" %}</a>
+    </div>
+</section>
+{% endblock %}

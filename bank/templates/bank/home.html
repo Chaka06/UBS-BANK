@@ -1,0 +1,80 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block body_class %}public-view{% endblock %}
+
+{% block content %}
+<section class="landing-hero">
+    <div class="landing-hero__content">
+        <span class="landing-hero__eyebrow">{% trans "UBS Banque en ligne" %}</span>
+        <h1>{% trans "Votre compte sécurisé, validé par la banque" %}</h1>
+        <p>
+            {% trans "Ouvrez un compte en ligne, recevez un RIB conforme à votre pays et gérez vos virements avec un gestionnaire dédié." %}
+        </p>
+        <div class="landing-hero__actions">
+            <a class="btn btn-primary" href="{% url 'register' %}">{% trans "Ouvrir un compte" %}</a>
+            <a class="btn btn-outline" href="{% url 'login' %}">{% trans "Se connecter" %}</a>
+        </div>
+        <div class="landing-hero__badges">
+            <span><i class="bx bx-lock-alt"></i> {% trans "Sécurité bancaire" %}</span>
+            <span><i class="bx bx-check-shield"></i> {% trans "Validation KYC" %}</span>
+            <span><i class="bx bx-support"></i> {% trans "Support dédié" %}</span>
+        </div>
+    </div>
+    <div class="landing-hero__visual">
+        <img src="https://cominmag.ch/wp-content/uploads/2025/03/unknown-jpeg.webp" alt="{% trans 'Carte UBS' %}">
+    </div>
+</section>
+
+<section class="landing-panels">
+    <div class="landing-panel">
+        <i class="bx bxs-bank"></i>
+        <h3>{% trans "RIB automatique" %}</h3>
+        <p>{% trans "IBAN et BIC générés dès validation du compte." %}</p>
+    </div>
+    <div class="landing-panel">
+        <i class="bx bxs-check-shield"></i>
+        <h3>{% trans "Virements supervisés" %}</h3>
+        <p>{% trans "Chaque opération est validée par l’administrateur." %}</p>
+    </div>
+    <div class="landing-panel">
+        <i class="bx bxs-bell"></i>
+        <h3>{% trans "Notifications" %}</h3>
+        <p>{% trans "Suivi clair : en cours, traitée, rejetée." %}</p>
+    </div>
+    <div class="landing-panel">
+        <i class="bx bxs-user-voice"></i>
+        <h3>{% trans "Gestionnaire dédié" %}</h3>
+        <p>{% trans "Un conseiller UBS pour vos demandes." %}</p>
+    </div>
+</section>
+
+<section class="landing-steps">
+    <h2>{% trans "Comment ça fonctionne" %}</h2>
+    <div class="landing-steps__grid">
+        <div>
+            <span>1</span>
+            <h4>{% trans "Inscription complète" %}</h4>
+            <p>{% trans "Identité, documents, résidence et pays." %}</p>
+        </div>
+        <div>
+            <span>2</span>
+            <h4>{% trans "Validation bancaire" %}</h4>
+            <p>{% trans "Contrôle par nos services pour activer le compte." %}</p>
+        </div>
+        <div>
+            <span>3</span>
+            <h4>{% trans "Accès sécurisé" %}</h4>
+            <p>{% trans "Connexion OTP et gestion des virements." %}</p>
+        </div>
+    </div>
+</section>
+
+<section class="landing-cta">
+    <div>
+        <h2>{% trans "Commencez avec UBS" %}</h2>
+        <p>{% trans "Une interface claire, mobile-first, et un suivi bancaire complet." %}</p>
+    </div>
+    <a class="btn btn-primary" href="{% url 'register' %}">{% trans "Créer mon compte" %}</a>
+</section>
+{% endblock %}
