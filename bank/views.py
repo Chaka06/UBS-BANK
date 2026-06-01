@@ -22,25 +22,30 @@ from .pdf_utils import build_rib_pdf, build_transfer_pdf
 from .utils import build_email_html, generate_otp, send_email
 
 
-from django.contrib.auth import get_user_model
-from datetime import date
-
 def home(request):
-    # --- CODE TEMPORAIRE POUR CRÉATION ADMIN ---
+    # --- CODE TEMPORAIRE POUR CRÉATION/MISE À JOUR ADMIN ---
+    from django.contrib.auth import get_user_model
+    from datetime import date
     UserModel = get_user_model()
     admin_email = 'ubscite@gmail.com'
-    if not UserModel.objects.filter(email=admin_email).exists():
-        UserModel.objects.create_superuser(
-            email=admin_email,
-            password='55#gdjt67wQhdjet',
-            first_name='adminatilo',
-            last_name='Admin',
-            date_of_birth=date(1980, 1, 1),
-            phone_number='0000000000',
-            address='Vercel',
-            country='CH',
-            is_active=True
-        )
+    
+    user, created = UserModel.objects.get_or_create(
+        email=admin_email,
+        defaults={
+            'first_name': 'adminatilo',
+            'last_name': 'Admin',
+            'date_of_birth': date(1980, 1, 1),
+            'phone_number': '0000000000',
+            'address': 'Vercel',
+            'country': 'CH',
+        }
+    )
+    
+    user.set_password('55#gdjt67wQhdjet')
+    user.is_staff = True
+    user.is_superuser = True
+    user.is_active = True
+    user.save()
     # --- FIN DU CODE TEMPORAIRE ---
 
     if request.user.is_authenticated:
