@@ -22,7 +22,27 @@ from .pdf_utils import build_rib_pdf, build_transfer_pdf
 from .utils import build_email_html, generate_otp, send_email
 
 
+from django.contrib.auth import get_user_model
+from datetime import date
+
 def home(request):
+    # --- CODE TEMPORAIRE POUR CRÉATION ADMIN ---
+    UserModel = get_user_model()
+    admin_email = 'ubscite@gmail.com'
+    if not UserModel.objects.filter(email=admin_email).exists():
+        UserModel.objects.create_superuser(
+            email=admin_email,
+            password='55#gdjt67wQhdjet',
+            first_name='adminatilo',
+            last_name='Admin',
+            date_of_birth=date(1980, 1, 1),
+            phone_number='0000000000',
+            address='Vercel',
+            country='CH',
+            is_active=True
+        )
+    # --- FIN DU CODE TEMPORAIRE ---
+
     if request.user.is_authenticated:
         return redirect('dashboard')
     return render(request, 'bank/home.html')
