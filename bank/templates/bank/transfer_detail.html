@@ -1,0 +1,17 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="card">
+    <h2>{% blocktrans with transfer_id=transfer.id %}Détails du virement #{{ transfer_id }}{% endblocktrans %}</h2>
+    <p><strong>{% trans "Bénéficiaire" %}:</strong> {{ transfer.beneficiary.full_name }}</p>
+    <p><strong>{% trans "Montant" %}:</strong> {{ transfer.amount }} {{ transfer.currency }}</p>
+    <p><strong>{% trans "Statut" %}:</strong> {{ transfer.get_status_display }}</p>
+    <p><strong>{% trans "Référence" %}:</strong> {{ transfer.reference|default:"-" }}</p>
+    {% if transfer.rejection_reason %}
+        <p><strong>{% trans "Motif de rejet" %}:</strong> {{ transfer.rejection_reason }}</p>
+    {% endif %}
+    <a class="btn btn-outline" href="{% url 'transfer_pdf' transfer.id %}">{% trans "Télécharger le PDF" %}</a>
+    <a class="btn btn-primary" href="{% url 'transfers' %}">{% trans "Retour" %}</a>
+</section>
+{% endblock %}

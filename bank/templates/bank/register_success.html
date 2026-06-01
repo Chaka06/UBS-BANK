@@ -1,0 +1,14 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="card">
+    <h2>{% trans "Merci pour votre inscription" %}</h2>
+    <p>
+        {% trans "Vos informations ont été transmises aux services compétents de la banque." %}
+        {% trans "Vous recevrez un email lorsque votre compte sera validé." %}
+        {% trans "Dans le cas contraire, vous serez informé des raisons du refus." %}
+    </p>
+    <a class="btn btn-outline" href="{% url 'home' %}">{% trans "Retour à l'accueil" %}</a>
+</section>
+{% endblock %}

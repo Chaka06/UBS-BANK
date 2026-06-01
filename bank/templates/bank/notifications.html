@@ -1,0 +1,40 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="mobile-screen">
+    <div class="page-header">
+        <h2>{% trans "Notifications" %}</h2>
+        <form method="post" action="{% url 'notifications_clear' %}">
+            {% csrf_token %}
+            <button class="btn btn-outline" type="submit">{% trans "Tout supprimer" %}</button>
+        </form>
+    </div>
+    <div class="card-mobile">
+        {% if notifications %}
+            <div class="list-card">
+                {% for notification in notifications %}
+                    <div class="list-item">
+                        <div class="list-icon">
+                            <i class="bx bxs-bell"></i>
+                        </div>
+                        <div class="list-body">
+                            <p class="list-title">{{ notification.title }}</p>
+                            <span class="muted">{{ notification.message }}</span>
+                        </div>
+                        <div class="list-right">
+                            <span class="muted">{{ notification.created_at }}</span>
+                            <form method="post" action="{% url 'notification_delete' notification.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-outline btn-sm" type="submit">{% trans "Supprimer" %}</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="muted">{% trans "Aucune notification." %}</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

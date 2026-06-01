@@ -1,0 +1,76 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="mobile-screen dashboard-screen">
+    {% if bank_account %}
+        <div class="card-balance">
+            <div class="card-balance-row">
+                <div>
+                    <span class="muted">{% trans "Carte virtuelle" %}</span>
+                    <span class="card-number">**** 5590</span>
+                    <h2>{{ bank_account.balance }} €</h2>
+                </div>
+                <div class="card-mini">
+                    <span>VISA</span>
+                </div>
+            </div>
+            <div class="card-actions">
+                <a href="{% url 'transfer_create' %}">
+                    <div class="action-btn"><i class="bx bx-transfer"></i></div>
+                    <span>{% trans "Transférer" %}</span>
+                </a>
+                <a href="{% url 'rib_pdf' %}">
+                    <div class="action-btn"><i class="bx bx-file"></i></div>
+                    <span>{% trans "RIB" %}</span>
+                </a>
+                <a href="{% url 'profile' %}">
+                    <div class="action-btn"><i class="bx bx-user"></i></div>
+                    <span>{% trans "Profil" %}</span>
+                </a>
+                <a href="{% url 'parameters' %}">
+                    <div class="action-btn"><i class="bx bx-cog"></i></div>
+                    <span>{% trans "Paramètres" %}</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="card-promo">
+            <div>
+                <h4>{% trans "UBS Banque Premium" %}</h4>
+                <p>{% trans "Votre conseiller dédié et un suivi bancaire clair, sécurisé et rapide." %}</p>
+            </div>
+            <div class="promo-icon">
+                <i class="bx bxs-badge-check"></i>
+            </div>
+        </div>
+    {% else %}
+        <p>{% trans "Votre compte bancaire est en cours de création." %}</p>
+    {% endif %}
+
+    <div class="card-list">
+        <div class="card-list-header">
+            <h3>{% trans "Transactions récentes" %}</h3>
+            <a href="{% url 'transfers' %}">{% trans "Tout voir" %}</a>
+        </div>
+        <div class="card-list-body">
+            {% if transfers %}
+                {% for transfer in transfers %}
+                    <a class="tx-row tx-row-link" href="{% url 'transfer_detail' transfer.id %}">
+                        <div class="tx-icon">
+                            <i class="bx bx-transfer"></i>
+                        </div>
+                        <div class="tx-body">
+                            <p>{{ transfer.beneficiary.full_name }}</p>
+                            <span class="muted">{{ transfer.get_status_display }}</span>
+                        </div>
+                        <div class="tx-amount">-{{ transfer.amount }} €</div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <p class="muted">{% trans "Aucune transaction récente." %}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'bank/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="mobile-screen">
+    <div class="page-header">
+        <h2>{% trans "Contact" %}</h2>
+    </div>
+    <div class="card-mobile">
+        {% if bank_account and bank_account.manager %}
+            <div class="profile-row">
+                <span class="muted">{% trans "Gestionnaire" %}</span>
+                <strong>{{ bank_account.manager.full_name }}</strong>
+            </div>
+            <div class="profile-row">
+                <span class="muted">{% trans "Email" %}</span>
+                <strong>{{ bank_account.manager.email }}</strong>
+            </div>
+            {% if bank_account.manager.phone_number %}
+                <div class="profile-row">
+                    <span class="muted">{% trans "Téléphone" %}</span>
+                    <strong>{{ bank_account.manager.phone_number }}</strong>
+                </div>
+            {% endif %}
+        {% else %}
+            <p class="muted">{% trans "Votre gestionnaire n'est pas encore assigné." %}</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
