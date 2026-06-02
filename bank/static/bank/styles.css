@@ -1570,6 +1570,43 @@ input[type="file"] {
     }
 }
 
+/* ── Auth pages (login, register, OTP) ── */
+.auth-view main.container {
+    width: min(540px, 94%);
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* ── Django errorlist (non_field_errors) ── */
+.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.8rem;
+}
+
+.errorlist li {
+    background: #fde8e8;
+    color: #b42318;
+    border-radius: 6px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+
+/* ── Register 2-col grid on desktop ── */
+@media (min-width: 500px) {
+    .register-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 1rem;
+    }
+
+    .register-grid .form-field.full-width {
+        grid-column: 1 / -1;
+    }
+}
+
 /* ── Form card max-width for auth pages ── */
 .card h2 {
     margin-top: 0;
