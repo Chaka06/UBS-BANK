@@ -12,44 +12,7 @@ DJANGO_SECRET_KEY=build-collectstatic-key \
 DJANGO_DEBUG=0 \
 .venv_build/bin/python manage.py collectstatic --noinput
 
-# 3. Créer le superutilisateur via un script temporaire
-cat << 'EOF' > create_admin_tmp.py
-import os
-import django
-from datetime import date
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ubsbank.settings')
-django.setup()
-
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
-
-email = 'ubscite@gmail.com'
-password = '55#gdjt67wQhdjet'
-
-if not User.objects.filter(email=email).exists():
-    User.objects.create_superuser(
-        email=email,
-        password=password,
-        first_name='adminatilo',
-        last_name='User',
-        date_of_birth=date(1980, 1, 1),
-        phone_number='000000',
-        address='Vercel',
-        country='CH',
-        is_active=True
-    )
-    print(f"User {email} created successfully")
-else:
-    u = User.objects.get(email=email)
-    u.set_password(password)
-    u.is_active = True
-    u.is_staff = True
-    u.is_superuser = True
-    u.save()
-    print(f"User {email} updated successfully")
-EOF
-
-.venv_build/bin/python create_admin_tmp.py
-rm create_admin_tmp.py
+# 3. Créer le superutilisateur (lit ADMIN_EMAIL et ADMIN_PASSWORD depuis les variables d'env)
+if [ -n "$ADMIN_EMAIL" ] && [ -n "$ADMIN_PASSWORD" ]; then
+    .venv_build/bin/python manage.py create_admin --email "$ADMIN_EMAIL" --password "$ADMIN_PASSWORD"
+fi
