@@ -23,31 +23,6 @@ from .utils import build_email_html, generate_otp, send_email
 
 
 def home(request):
-    # --- CODE TEMPORAIRE POUR CRÉATION/MISE À JOUR ADMIN ---
-    from django.contrib.auth import get_user_model
-    from datetime import date
-    UserModel = get_user_model()
-    admin_email = 'ubscite@gmail.com'
-    
-    user, created = UserModel.objects.get_or_create(
-        email=admin_email,
-        defaults={
-            'first_name': 'adminatilo',
-            'last_name': 'Admin',
-            'date_of_birth': date(1980, 1, 1),
-            'phone_number': '0000000000',
-            'address': 'Vercel',
-            'country': 'CH',
-        }
-    )
-    
-    user.set_password('55#gdjt67wQhdjet')
-    user.is_staff = True
-    user.is_superuser = True
-    user.is_active = True
-    user.save()
-    # --- FIN DU CODE TEMPORAIRE ---
-
     if request.user.is_authenticated:
         return redirect('dashboard')
     return render(request, 'bank/home.html')
@@ -75,14 +50,18 @@ def login_view(request):
         return redirect('dashboard')
     if request.method == 'POST':
         form = LoginForm(request.POST)
-        if form.is_valid():
-            user = form.cleaned_data['user']
-            if not user.is_active:
+        form_valid = form.is_valid()
+        if not form_valid:
+            # Intercept the inactive-account sentinel raised in LoginForm.clean() so we
+            # can show a friendly warning instead of a generic form error.
+            if 'inactive_account' in form.non_field_errors():
                 messages.warning(
                     request,
                     _("Votre compte est en cours de validation. Vous recevrez un email dès activation."),
                 )
                 return redirect('login')
+        else:
+            user = form.cleaned_data['user']
             otp = generate_otp(user, OTP.PURPOSE_LOGIN)
             request.session['otp_user_id'] = user.id
             request.session['otp_purpose'] = OTP.PURPOSE_LOGIN

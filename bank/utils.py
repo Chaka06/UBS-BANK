@@ -1,5 +1,6 @@
+import html
 import logging
-import random
+import secrets
 import smtplib
 from datetime import timedelta
 
@@ -23,15 +24,20 @@ def build_email_html(
     button_text: str | None = None,
     button_url: str | None = None,
 ) -> str:
-    items = "".join(f"<li>{line}</li>" for line in lines)
+    safe_title = html.escape(title)
+    safe_greeting = html.escape(greeting)
+    safe_footer = html.escape(footer)
+    items = "".join(f"<li>{html.escape(line)}</li>" for line in lines)
     button_block = ""
     if button_text and button_url:
+        safe_url = button_url if button_url.startswith(('https://', 'http://')) else '#'
+        safe_button_text = html.escape(button_text)
         button_block = (
             f'<div style="margin:16px 0 8px;">'
-            f'<a href="{button_url}" '
+            f'<a href="{safe_url}" '
             f'style="background:#cc0000;color:#ffffff;text-decoration:none;'
             f'padding:10px 16px;border-radius:8px;display:inline-block;'
-            f'font-weight:600;font-size:14px;">{button_text}</a>'
+            f'font-weight:600;font-size:14px;">{safe_button_text}</a>'
             f"</div>"
         )
     return f"""
@@ -43,11 +49,11 @@ def build_email_html(
               <img src="{LOGO_URL}" alt="UBS" style="height:32px;">
               <div style="font-size:14px;color:#6c737f;">Banque en ligne</div>
             </div>
-            <h2 style="margin:0 0 8px;font-size:20px;">{title}</h2>
-            <p style="margin:0 0 16px;">{greeting}</p>
+            <h2 style="margin:0 0 8px;font-size:20px;">{safe_title}</h2>
+            <p style="margin:0 0 16px;">{safe_greeting}</p>
             <ul style="padding-left:18px;margin:0 0 16px;">{items}</ul>
             {button_block}
-            <p style="margin:0;font-size:13px;color:#6c737f;">{footer}</p>
+            <p style="margin:0;font-size:13px;color:#6c737f;">{safe_footer}</p>
           </div>
           <p style="text-align:center;font-size:12px;color:#9aa0a6;margin-top:12px;">
             UBS Banque en ligne • Message automatique
@@ -80,7 +86,7 @@ def send_email(
 
 
 def generate_otp(user, purpose: str) -> OTP:
-    code = ''.join(str(random.randint(0, 9)) for _ in range(6))
+    code = ''.join(str(secrets.randbelow(10)) for _ in range(6))
     otp = OTP.objects.create(
         user=user,
         code=code,

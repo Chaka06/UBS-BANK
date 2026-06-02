@@ -1,4 +1,4 @@
-import random
+import secrets
 import string
 from decimal import Decimal
 
@@ -35,7 +35,7 @@ IBAN_LENGTHS = {
 
 
 def _random_digits(count: int) -> str:
-    return ''.join(random.choice(string.digits) for _ in range(count))
+    return ''.join(secrets.choice(string.digits) for _ in range(count))
 
 
 def generate_iban(country_code: str) -> str:

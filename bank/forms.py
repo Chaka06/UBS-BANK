@@ -74,7 +74,16 @@ class LoginForm(forms.Form):
         password = cleaned_data.get('password')
         if email and password:
             user = authenticate(username=email, password=password)
-            if not user:
+            if user is None:
+                # Check whether the account exists but is inactive (pending validation).
+                # authenticate() returns None for inactive users, so we must query the
+                # DB directly to distinguish "wrong credentials" from "inactive account".
+                try:
+                    candidate = User.objects.get(email=email)
+                    if candidate.check_password(password) and not candidate.is_active:
+                        raise ValidationError('inactive_account')
+                except User.DoesNotExist:
+                    pass
                 raise ValidationError(_('Identifiants invalides.'))
             cleaned_data['user'] = user
         return cleaned_data
