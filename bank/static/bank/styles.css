@@ -11,7 +11,12 @@ body {
 }
 
 main.container {
-    padding-bottom: 90px;
+    padding-bottom: 90px; /* espace pour la bottom-nav fixe */
+}
+
+.auth-view main.container,
+.public-view main.container {
+    padding-bottom: 2rem;
 }
 
 .app-layout {
@@ -1573,8 +1578,18 @@ input[type="file"] {
 /* ── Auth pages (login, register, OTP) ── */
 .auth-view main.container {
     width: min(540px, 94%);
+    margin: 0 auto;
     padding-top: 2rem;
     padding-bottom: 3rem;
+}
+
+@media (min-width: 1024px) {
+    .auth-view .app-layout {
+        display: block;
+        width: 100%;
+        padding-top: 0;
+        margin: 0;
+    }
 }
 
 /* ── Django errorlist (non_field_errors) ── */
