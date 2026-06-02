@@ -104,3 +104,8 @@ class SupportMessageAdmin(admin.ModelAdmin):
     list_display = ('user', 'sender_type', 'created_at')
     list_filter = ('sender_type',)
     search_fields = ('user__email', 'message')
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.sender_type = SupportMessage.SENDER_ADMIN
+        super().save_model(request, obj, form, change)

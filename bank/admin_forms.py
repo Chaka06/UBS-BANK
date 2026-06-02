@@ -24,6 +24,11 @@ class UserCreationForm(forms.ModelForm):
             'is_staff',
         )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['id_doc_front'].required = False
+        self.fields['id_doc_back'].required = False
+
     def clean(self):
         cleaned_data = super().clean()
         if cleaned_data.get('password1') != cleaned_data.get('password2'):

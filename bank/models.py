@@ -78,8 +78,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(max_length=30)
     address = models.CharField(max_length=255)
     country = models.CharField(max_length=2, choices=COUNTRY_CHOICES)
-    id_doc_front = models.ImageField(upload_to='ids/front/')
-    id_doc_back = models.ImageField(upload_to='ids/back/')
+    id_doc_front = models.ImageField(upload_to='ids/front/', blank=True)
+    id_doc_back = models.ImageField(upload_to='ids/back/', blank=True)
     preferred_language = models.CharField(
         max_length=2,
         choices=(
