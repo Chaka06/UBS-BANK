@@ -44,26 +44,26 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Identité',     {'fields': ('email', 'password', 'first_name', 'last_name')}),
         ('Informations', {'fields': ('date_of_birth', 'phone_number', 'address', 'country', 'preferred_language')}),
-        ('Documents',    {'fields': ('id_doc_front', 'id_doc_back')}),
+        ('Documents ID', {'fields': ('id_doc_front', 'id_doc_back'),
+                          'description': 'Documents uploadés par l\'utilisateur lors de son inscription.'}),
         ('Permissions',  {'fields': ('is_active', 'is_staff', 'is_superuser')}),
         ('Dates',        {'fields': ('last_login', 'date_joined')}),
     )
 
-    # Formulaire de CRÉATION (nouvel utilisateur) — sans widgets M2M lourds
+    # Formulaire de CRÉATION — sans uploads de fichiers (limite Vercel 4.5MB)
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
             'fields': (
                 'email', 'first_name', 'last_name',
                 'date_of_birth', 'phone_number', 'address', 'country',
-                'id_doc_front', 'id_doc_back',
                 'password1', 'password2',
                 'is_active', 'is_staff',
             ),
         }),
     )
 
-    readonly_fields = ('last_login', 'date_joined')
+    readonly_fields = ('id_doc_front', 'id_doc_back', 'last_login', 'date_joined')
     inlines = [BankAccountInline]
 
     def get_form(self, request, obj=None, **kwargs):
