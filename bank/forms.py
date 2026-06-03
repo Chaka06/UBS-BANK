@@ -28,8 +28,6 @@ class RegistrationForm(forms.ModelForm):
             'phone_number',
             'address',
             'country',
-            'id_doc_front',
-            'id_doc_back',
         ]
         labels = {
             'first_name': _('Prénom'),
@@ -39,8 +37,6 @@ class RegistrationForm(forms.ModelForm):
             'phone_number': _('Numéro de téléphone'),
             'address': _('Adresse de résidence'),
             'country': _('Pays'),
-            'id_doc_front': _("Pièce d'identité (recto)"),
-            'id_doc_back': _("Pièce d'identité (verso)"),
         }
         widgets = {
             'date_of_birth': forms.DateInput(attrs={'type': 'date'}),

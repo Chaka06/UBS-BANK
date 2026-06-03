@@ -51,11 +51,10 @@ class UserChangeForm(forms.ModelForm):
             'phone_number',
             'address',
             'country',
+            'preferred_language',
             'id_doc_front',
             'id_doc_back',
             'is_active',
             'is_staff',
             'is_superuser',
-            'groups',
-            'user_permissions',
         )

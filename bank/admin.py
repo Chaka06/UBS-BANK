@@ -1,6 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.contrib.auth.hashers import make_password
 
 from .admin_forms import UserChangeForm, UserCreationForm
 from .models import AccountManager, BankAccount, Beneficiary, Notification, SupportMessage, Transfer, User

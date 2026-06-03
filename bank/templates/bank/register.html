@@ -7,7 +7,7 @@
 <section class="card">
     <h2>{% trans "Créer un compte" %}</h2>
     <p>{% trans "Merci de remplir les informations ci-dessous." %}</p>
-    <form method="post" enctype="multipart/form-data" class="form-grid">
+    <form method="post" class="form-grid">
         {% csrf_token %}
         {{ form.non_field_errors }}
         <div class="register-grid">
@@ -45,16 +45,6 @@
                 {{ form.country.label_tag }}
                 {{ form.country }}
                 {% for error in form.country.errors %}<span class="error">{{ error }}</span>{% endfor %}
-            </div>
-            <div class="form-field full-width">
-                {{ form.id_doc_front.label_tag }}
-                {{ form.id_doc_front }}
-                {% for error in form.id_doc_front.errors %}<span class="error">{{ error }}</span>{% endfor %}
-            </div>
-            <div class="form-field full-width">
-                {{ form.id_doc_back.label_tag }}
-                {{ form.id_doc_back }}
-                {% for error in form.id_doc_back.errors %}<span class="error">{{ error }}</span>{% endfor %}
             </div>
             <div class="form-field full-width">
                 {{ form.password1.label_tag }}
