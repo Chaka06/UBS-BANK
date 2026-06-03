@@ -18,16 +18,10 @@ class UserCreationForm(forms.ModelForm):
             'phone_number',
             'address',
             'country',
-            'id_doc_front',
-            'id_doc_back',
             'is_active',
             'is_staff',
         )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['id_doc_front'].required = False
-        self.fields['id_doc_back'].required = False
 
     def clean(self):
         cleaned_data = super().clean()
