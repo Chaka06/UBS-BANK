@@ -1,5 +1,6 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.hashers import make_password
 
 from .admin_forms import UserChangeForm, UserCreationForm
 from .models import AccountManager, BankAccount, Beneficiary, Notification, SupportMessage, Transfer, User
@@ -8,7 +9,8 @@ from .models import AccountManager, BankAccount, Beneficiary, Notification, Supp
 class BankAccountInline(admin.StackedInline):
     model = BankAccount
     extra = 0
-    readonly_fields = ('iban', 'bic', 'account_number', 'balance', 'currency', 'country')
+    can_delete = False
+    readonly_fields = ('iban', 'bic', 'account_number', 'created_at')
     fields = (
         'manager',
         'country',
@@ -24,46 +26,67 @@ class BankAccountInline(admin.StackedInline):
         'suspend_reason',
     )
 
+    def get_queryset(self, request):
+        return super().get_queryset(request)
+
 
 @admin.register(User)
-class UserAdmin(DjangoUserAdmin):
+class UserAdmin(admin.ModelAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
+
     list_display = ('email', 'first_name', 'last_name', 'is_active', 'is_staff')
     list_filter = ('is_active', 'is_staff', 'country')
     ordering = ('email',)
     search_fields = ('email', 'first_name', 'last_name')
+
+    # Formulaire de MODIFICATION (utilisateur existant)
     fieldsets = (
-        ('Identité', {'fields': ('email', 'password', 'first_name', 'last_name')}),
-        ('Informations', {'fields': ('date_of_birth', 'phone_number', 'address', 'country')}),
-        ("Documents", {'fields': ('id_doc_front', 'id_doc_back')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
-        ('Dates', {'fields': ('last_login', 'date_joined')}),
+        ('Identité',     {'fields': ('email', 'password', 'first_name', 'last_name')}),
+        ('Informations', {'fields': ('date_of_birth', 'phone_number', 'address', 'country', 'preferred_language')}),
+        ('Documents',    {'fields': ('id_doc_front', 'id_doc_back')}),
+        ('Permissions',  {'fields': ('is_active', 'is_staff', 'is_superuser')}),
+        ('Dates',        {'fields': ('last_login', 'date_joined')}),
     )
+
+    # Formulaire de CRÉATION (nouvel utilisateur) — sans widgets M2M lourds
     add_fieldsets = (
-        (
-            None,
-            {
-                'classes': ('wide',),
-                'fields': (
-                    'email',
-                    'first_name',
-                    'last_name',
-                    'date_of_birth',
-                    'phone_number',
-                    'address',
-                    'country',
-                    'id_doc_front',
-                    'id_doc_back',
-                    'password1',
-                    'password2',
-                    'is_active',
-                    'is_staff',
-                ),
-            },
-        ),
+        (None, {
+            'classes': ('wide',),
+            'fields': (
+                'email', 'first_name', 'last_name',
+                'date_of_birth', 'phone_number', 'address', 'country',
+                'id_doc_front', 'id_doc_back',
+                'password1', 'password2',
+                'is_active', 'is_staff',
+            ),
+        }),
     )
+
+    readonly_fields = ('last_login', 'date_joined')
     inlines = [BankAccountInline]
+
+    def get_form(self, request, obj=None, **kwargs):
+        if obj is None:
+            kwargs['form'] = self.add_form
+        else:
+            kwargs['form'] = self.form
+        return super().get_form(request, obj, **kwargs)
+
+    def get_fieldsets(self, request, obj=None):
+        if obj is None:
+            return self.add_fieldsets
+        return self.fieldsets
+
+    def get_inlines(self, request, obj):
+        if obj is None:
+            return []
+        return self.inlines
+
+    def save_model(self, request, obj, form, change):
+        if not change and 'password1' in form.cleaned_data:
+            obj.set_password(form.cleaned_data['password1'])
+        super().save_model(request, obj, form, change)
 
 
 @admin.register(AccountManager)
