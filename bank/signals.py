@@ -23,7 +23,8 @@ def user_previous_state(sender, instance, **kwargs):
 @receiver(post_save, sender=User)
 def create_bank_account_on_activation(sender, instance, created, **kwargs):
     previous = getattr(instance, '_previous_is_active', False)
-    if instance.is_active and not previous:
+    # Déclenche uniquement lors d'une vraie activation (False → True)
+    if instance.is_active and not previous and not created:
         if not hasattr(instance, 'bank_account'):
             BankAccount.objects.create(
                 user=instance,

@@ -131,7 +131,7 @@ def logout_view(request):
 @login_required
 def dashboard(request):
     bank_account = getattr(request.user, 'bank_account', None)
-    transfers = request.user.transfers.order_by('-created_at')[:5]
+    transfers = request.user.transfers.select_related('beneficiary').order_by('-created_at')[:5]
     notifications = request.user.notifications.order_by('-created_at')[:5]
     return render(
         request,
@@ -254,6 +254,9 @@ def transfer_create(request):
         form.fields['beneficiary'].queryset = request.user.beneficiaries.all()
         if form.is_valid():
             amount = form.cleaned_data['amount']
+            beneficiary = form.cleaned_data['beneficiary']
+            if not request.user.beneficiaries.filter(pk=beneficiary.pk).exists():
+                return HttpResponseForbidden(_('Bénéficiaire non autorisé.'))
             if bank_account.balance < amount:
                 form.add_error('amount', _('Solde insuffisant.'))
             else:
@@ -329,7 +332,7 @@ def transfer_create(request):
 
 @login_required
 def transfers(request):
-    items = request.user.transfers.order_by('-created_at')
+    items = request.user.transfers.select_related('beneficiary').order_by('-created_at')
     return render(request, 'bank/transfers.html', {'transfers': items})
 
 

@@ -1,3 +1,4 @@
+import logging
 from io import BytesIO
 
 from django.conf import settings
@@ -7,6 +8,8 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
+
+logger = logging.getLogger(__name__)
 
 
 def build_transfer_pdf(transfer) -> bytes:
@@ -19,9 +22,13 @@ def build_transfer_pdf(transfer) -> bytes:
     top = height - 18 * mm
 
     logo_path = settings.BASE_DIR / "bank" / "static" / "bank" / "ubs-logo.png"
-    if logo_path.exists():
-        pdf.drawImage(ImageReader(str(logo_path)), left, top - 28, width=45, height=18, mask="auto")
-    else:
+    try:
+        if logo_path.exists():
+            pdf.drawImage(ImageReader(str(logo_path)), left, top - 28, width=45, height=18, mask="auto")
+        else:
+            raise FileNotFoundError
+    except Exception:
+        logger.warning('Logo PDF introuvable, utilisation du fallback.')
         pdf.setFillColor(colors.HexColor("#CC0000"))
         pdf.rect(left, top - 20, 60, 12, fill=1, stroke=0)
         pdf.setFillColor(colors.white)
@@ -95,9 +102,13 @@ def build_rib_pdf(user, bank_account) -> bytes:
     top = height - 18 * mm
 
     logo_path = settings.BASE_DIR / "bank" / "static" / "bank" / "ubs-logo.png"
-    if logo_path.exists():
-        pdf.drawImage(ImageReader(str(logo_path)), left, top - 28, width=45, height=18, mask="auto")
-    else:
+    try:
+        if logo_path.exists():
+            pdf.drawImage(ImageReader(str(logo_path)), left, top - 28, width=45, height=18, mask="auto")
+        else:
+            raise FileNotFoundError
+    except Exception:
+        logger.warning('Logo PDF introuvable, utilisation du fallback.')
         pdf.setFillColor(colors.HexColor("#CC0000"))
         pdf.rect(left, top - 20, 60, 12, fill=1, stroke=0)
         pdf.setFillColor(colors.white)
