@@ -9,7 +9,7 @@ def lever_di(modeladmin, request, queryset):
     updated = 0
     for account in queryset.filter(is_di=True):
         account.is_di = False
-        account.save()
+        account.save(update_fields=['is_di'])
         updated += 1
     if updated:
         modeladmin.message_user(request, f"{updated} compte(s) : DI levé avec succès.")

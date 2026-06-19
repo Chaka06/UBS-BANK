@@ -35,7 +35,10 @@
                     <a class="icon-btn" href="{% url 'notifications' %}" aria-label="Notifications">
                         <i class="bx bxs-bell"></i>
                     </a>
-                    <a class="btn btn-outline" href="{% url 'logout' %}">{% trans "Déconnexion" %}</a>
+                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline">{% trans "Déconnexion" %}</button>
+                    </form>
                 {% else %}
                     <a class="btn btn-outline" href="{% url 'login' %}">{% trans "Se connecter" %}</a>
                     <a class="btn btn-primary" href="{% url 'register' %}">{% trans "S'inscrire" %}</a>
@@ -72,10 +75,13 @@
                         <i class="bx bxs-user"></i>
                         {% trans "Profil" %}
                     </a>
-                    <a href="{% url 'logout' %}">
-                        <i class="bx bx-log-out"></i>
-                        {% trans "Déconnexion" %}
-                    </a>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="sidebar-logout-btn">
+                            <i class="bx bx-log-out"></i>
+                            {% trans "Déconnexion" %}
+                        </button>
+                    </form>
                 </nav>
             </aside>
         {% endif %}

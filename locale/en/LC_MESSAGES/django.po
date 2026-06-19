@@ -706,5 +706,8 @@ msgstr "Our banking teams will review your file shortly."
 msgid "Votre compte a bien été créé. Un gestionnaire va étudier votre dossier."
 msgstr "Your account has been created. An account manager will review your file."
 
+msgid "Bénéficiaire non autorisé."
+msgstr "Unauthorized beneficiary."
+
 msgid "Langue"
 msgstr "Language"

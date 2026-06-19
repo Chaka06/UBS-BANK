@@ -209,6 +209,8 @@ LOGOUT_REDIRECT_URL = 'home'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CONN_MAX_AGE = int(os.getenv('CONN_MAX_AGE', '60'))
+
 # ── Sécurité HTTP (production uniquement) ──
 if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000

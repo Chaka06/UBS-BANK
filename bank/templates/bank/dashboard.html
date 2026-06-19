@@ -64,7 +64,7 @@
                             <p>{{ transfer.beneficiary.full_name }}</p>
                             <span class="muted">{{ transfer.get_status_display }}</span>
                         </div>
-                        <div class="tx-amount">-{{ transfer.amount }} €</div>
+                        <div class="tx-amount">-{{ transfer.amount }} {{ transfer.currency }}</div>
                     </a>
                 {% endfor %}
             {% else %}

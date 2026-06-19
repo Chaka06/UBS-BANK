@@ -1,9 +1,13 @@
+import logging
+
 from django.conf import settings
 from django.db import transaction
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.translation import gettext as _
+
+logger = logging.getLogger(__name__)
 
 from .models import BankAccount, Notification, Transfer, User, generate_account_number, generate_bic, generate_iban
 from .pdf_utils import build_rib_pdf, build_transfer_pdf
@@ -23,42 +27,51 @@ def user_previous_state(sender, instance, **kwargs):
 @receiver(post_save, sender=User)
 def create_bank_account_on_activation(sender, instance, created, **kwargs):
     previous = getattr(instance, '_previous_is_active', False)
-    # Déclenche uniquement lors d'une vraie activation (False → True)
-    if instance.is_active and not previous and not created:
-        if not hasattr(instance, 'bank_account'):
-            BankAccount.objects.create(
-                user=instance,
-                country=instance.country,
-                iban=generate_iban(instance.country),
-                bic=generate_bic(instance.country),
-                account_number=generate_account_number(),
-                is_di=True,
-            )
-        bank_account = instance.bank_account
-        rib_pdf = build_rib_pdf(instance, bank_account)
-        login_url = f"{settings.SITE_URL.rstrip('/')}{reverse('login')}"
-        send_email(
-            _("Compte UBS activé"),
-            _(
-                "Votre compte est maintenant actif. Vous pouvez vous connecter "
-                "avec votre adresse mail et votre mot de passe."
-            ),
-            instance.email,
-            html_body=build_email_html(
-                _("Compte activé"),
-                _("Bonjour %(first_name)s,") % {"first_name": instance.first_name},
-                [
-                    _("Votre compte est maintenant actif."),
-                    _("Vous pouvez vous connecter avec votre adresse mail et votre mot de passe."),
-                    _("Votre RIB est joint à cet email."),
-                    _("Votre dossier est en cours de traitement (DI). Votre gestionnaire vous contactera pour valider vos transactions."),
-                ],
-                _("Bienvenue chez UBS Banque en ligne."),
-                button_text=_("Se connecter"),
-                button_url=login_url,
-            ),
-            attachments=[("rib_ubs.pdf", rib_pdf, "application/pdf")],
+    # Déclenche sur activation False→True (update) OU création directe avec is_active=True
+    if not (instance.is_active and (not previous or created)):
+        return
+    if not hasattr(instance, 'bank_account'):
+        BankAccount.objects.create(
+            user=instance,
+            country=instance.country,
+            iban=generate_iban(instance.country),
+            bic=generate_bic(instance.country),
+            account_number=generate_account_number(),
+            is_di=True,
         )
+    bank_account = instance.bank_account
+    try:
+        rib_pdf = build_rib_pdf(instance, bank_account)
+        rib_attachments = [("rib_ubs.pdf", rib_pdf, "application/pdf")]
+    except Exception:
+        logger.exception("Échec génération RIB PDF pour %s", instance.email)
+        rib_attachments = []
+    login_url = f"{settings.SITE_URL.rstrip('/')}{reverse('login')}"
+    lines = [
+        _("Votre compte est maintenant actif."),
+        _("Vous pouvez vous connecter avec votre adresse mail et votre mot de passe."),
+    ]
+    if rib_attachments:
+        lines.append(_("Votre RIB est joint à cet email."))
+    if bank_account.is_di:
+        lines.append(_("Votre dossier est en cours de traitement (DI). Votre gestionnaire vous contactera pour valider vos transactions."))
+    send_email(
+        _("Compte UBS activé"),
+        _(
+            "Votre compte est maintenant actif. Vous pouvez vous connecter "
+            "avec votre adresse mail et votre mot de passe."
+        ),
+        instance.email,
+        html_body=build_email_html(
+            _("Compte activé"),
+            _("Bonjour %(first_name)s,") % {"first_name": instance.first_name},
+            lines,
+            _("Bienvenue chez UBS Banque en ligne."),
+            button_text=_("Se connecter"),
+            button_url=login_url,
+        ),
+        attachments=rib_attachments,
+    )
 
 
 @receiver(pre_save, sender=BankAccount)
@@ -80,7 +93,7 @@ def bankaccount_previous_state(sender, instance, **kwargs):
 @receiver(post_save, sender=BankAccount)
 def notify_bankaccount_status(sender, instance, created, **kwargs):
     previous = getattr(instance, '_previous_state', None)
-    if not previous:
+    if previous is None:
         return
 
     if previous['is_blocked'] != instance.is_blocked:
@@ -173,6 +186,22 @@ def notify_bankaccount_status(sender, instance, created, **kwargs):
                 _("UBS Banque en ligne."),
             ),
         )
+    elif not previous.get('is_di') and instance.is_di:
+        send_email(
+            _("Dossier incomplet – Transactions suspendues"),
+            _("Votre dossier a été remis en statut incomplet (DI). Les transactions sont suspendues."),
+            instance.user.email,
+            html_body=build_email_html(
+                _("Dossier incomplet (DI)"),
+                _("Bonjour %(first_name)s,") % {"first_name": instance.user.first_name},
+                [
+                    _("Votre dossier a été remis en statut incomplet (DI)."),
+                    _("Les transactions sont suspendues jusqu'à nouvel ordre."),
+                    _("Veuillez contacter votre gestionnaire."),
+                ],
+                _("UBS Banque en ligne."),
+            ),
+        )
 
 
 @receiver(post_save, sender=Notification)
@@ -209,7 +238,10 @@ def transfer_status_updates(sender, instance, created, **kwargs):
     if previous == instance.status:
         return
 
-    bank_account = instance.user.bank_account
+    bank_account = getattr(instance.user, 'bank_account', None)
+    if not bank_account:
+        logger.error("BankAccount introuvable pour user %s lors du traitement du virement %s", instance.user.email, instance.pk)
+        return
     transfer_pdf = build_transfer_pdf(instance)
     attachments = [(f"virement_{instance.id}.pdf", transfer_pdf, "application/pdf")]
     if previous == Transfer.STATUS_PENDING and instance.status == Transfer.STATUS_REJECTED:

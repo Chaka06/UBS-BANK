@@ -10,6 +10,8 @@ DJANGO_DEBUG=1 \
 .venv_build/bin/python manage.py compilemessages || echo "compilemessages ignoré (gettext non disponible)"
 
 # 2. Appliquer les migrations
+DJANGO_SECRET_KEY=build-migrate-key \
+DJANGO_DEBUG=1 \
 .venv_build/bin/python manage.py migrate --noinput
 
 # 3. Collecter les fichiers statiques

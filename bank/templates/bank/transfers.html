@@ -5,7 +5,9 @@
 <section class="mobile-screen">
     <div class="page-header">
         <h2>{% trans "Virements" %}</h2>
-        <a class="btn btn-primary" href="{% url 'transfer_create' %}">{% trans "Nouveau" %}</a>
+        {% if bank_account and not bank_account.is_di and not bank_account.is_blocked and not bank_account.transfers_suspended %}
+            <a class="btn btn-primary" href="{% url 'transfer_create' %}">{% trans "Nouveau" %}</a>
+        {% endif %}
     </div>
 
     {% if transfers %}
@@ -20,7 +22,7 @@
                         <span class="muted">{% blocktrans with status=transfer.get_status_display %}Statut: {{ status }}{% endblocktrans %}</span>
                     </div>
                     <div class="list-right">
-                        <span class="amount-negative">-{{ transfer.amount }} €</span>
+                        <span class="amount-negative">-{{ transfer.amount }} {{ transfer.currency }}</span>
                         <span class="muted">{% trans "Voir détails" %}</span>
                     </div>
                 </a>

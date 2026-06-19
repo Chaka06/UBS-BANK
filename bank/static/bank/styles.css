@@ -1644,6 +1644,22 @@ input[type="file"] {
     }
 }
 
+/* ── Bouton déconnexion sidebar (form→button) ── */
+.sidebar-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    text-align: left;
+}
+
 /* ── Sélecteur de langue ── */
 .lang-switcher {
     display: flex;

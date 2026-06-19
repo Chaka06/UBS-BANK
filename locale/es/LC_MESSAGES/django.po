@@ -706,5 +706,8 @@ msgstr "Nuestros equipos bancarios revisarán su expediente en breve."
 msgid "Votre compte a bien été créé. Un gestionnaire va étudier votre dossier."
 msgstr "Su cuenta ha sido creada. Un gestor revisará su expediente."
 
+msgid "Bénéficiaire non autorisé."
+msgstr "Beneficiario no autorizado."
+
 msgid "Langue"
 msgstr "Idioma"

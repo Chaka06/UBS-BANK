@@ -706,5 +706,8 @@ msgstr "Unsere Bankenteams werden Ihre Akte in Kürze prüfen."
 msgid "Votre compte a bien été créé. Un gestionnaire va étudier votre dossier."
 msgstr "Ihr Konto wurde erstellt. Ein Berater wird Ihre Akte prüfen."
 
+msgid "Bénéficiaire non autorisé."
+msgstr "Nicht autorisierter Begünstigter."
+
 msgid "Langue"
 msgstr "Sprache"

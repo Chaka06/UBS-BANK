@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import translation
 from django.utils.translation import gettext as _
+from django.views.decorators.http import require_POST
 from .forms import (
     BeneficiaryForm,
     LoginForm,
@@ -138,6 +139,7 @@ def otp_verify(request):
     return render(request, 'bank/otp_verify.html', {'form': form})
 
 
+@require_POST
 def logout_view(request):
     logout(request)
     return redirect('home')
@@ -278,16 +280,19 @@ def transfer_create(request):
             beneficiary = form.cleaned_data['beneficiary']
             if not request.user.beneficiaries.filter(pk=beneficiary.pk).exists():
                 return HttpResponseForbidden(_('Bénéficiaire non autorisé.'))
-            if bank_account.balance < amount:
-                form.add_error('amount', _('Solde insuffisant.'))
-            else:
-                with transaction.atomic():
+            transfer = None
+            with transaction.atomic():
+                locked = BankAccount.objects.select_for_update().get(pk=bank_account.pk)
+                if locked.balance >= amount:
                     transfer = form.save(commit=False)
                     transfer.user = request.user
-                    transfer.currency = bank_account.currency
+                    transfer.currency = locked.currency
                     transfer.save()
-                    bank_account.balance -= amount
-                    bank_account.save(update_fields=['balance'])
+                    locked.balance -= amount
+                    locked.save(update_fields=['balance'])
+            if transfer is None:
+                form.add_error('amount', _('Solde insuffisant.'))
+            else:
                 transfer_pdf = build_transfer_pdf(transfer)
                 attachments = [
                     (f"virement_{transfer.id}.pdf", transfer_pdf, "application/pdf"),
@@ -353,8 +358,9 @@ def transfer_create(request):
 
 @login_required
 def transfers(request):
+    bank_account = getattr(request.user, 'bank_account', None)
     items = request.user.transfers.select_related('beneficiary').order_by('-created_at')
-    return render(request, 'bank/transfers.html', {'transfers': items})
+    return render(request, 'bank/transfers.html', {'transfers': items, 'bank_account': bank_account})
 
 
 @login_required
@@ -423,7 +429,6 @@ def parameters(request):
             language_form = LanguagePreferenceForm(request.POST, instance=request.user)
             if language_form.is_valid():
                 user = language_form.save()
-                user.save(update_fields=['preferred_language'])
                 translation.activate(user.preferred_language)
                 request.session['django_language'] = user.preferred_language
                 messages.success(request, _('Langue mise à jour.'))
