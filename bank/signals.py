@@ -32,6 +32,7 @@ def create_bank_account_on_activation(sender, instance, created, **kwargs):
                 iban=generate_iban(instance.country),
                 bic=generate_bic(instance.country),
                 account_number=generate_account_number(),
+                is_di=True,
             )
         bank_account = instance.bank_account
         rib_pdf = build_rib_pdf(instance, bank_account)
@@ -50,6 +51,7 @@ def create_bank_account_on_activation(sender, instance, created, **kwargs):
                     _("Votre compte est maintenant actif."),
                     _("Vous pouvez vous connecter avec votre adresse mail et votre mot de passe."),
                     _("Votre RIB est joint à cet email."),
+                    _("Votre dossier est en cours de traitement (DI). Votre gestionnaire vous contactera pour valider vos transactions."),
                 ],
                 _("Bienvenue chez UBS Banque en ligne."),
                 button_text=_("Se connecter"),
@@ -68,6 +70,7 @@ def bankaccount_previous_state(sender, instance, **kwargs):
             'block_fee',
             'transfers_suspended',
             'suspend_reason',
+            'is_di',
         ).first()
         instance._previous_state = previous
     else:
@@ -154,6 +157,22 @@ def notify_bankaccount_status(sender, instance, created, **kwargs):
                     _("UBS Banque en ligne."),
                 ),
             )
+
+    if previous.get('is_di') and not instance.is_di:
+        send_email(
+            _("Dossier validé – Transactions autorisées"),
+            _("Votre dossier a été validé. Vous pouvez désormais effectuer des transactions."),
+            instance.user.email,
+            html_body=build_email_html(
+                _("Dossier validé"),
+                _("Bonjour %(first_name)s,") % {"first_name": instance.user.first_name},
+                [
+                    _("Votre dossier a été validé par votre gestionnaire."),
+                    _("Vous pouvez désormais effectuer des virements."),
+                ],
+                _("UBS Banque en ligne."),
+            ),
+        )
 
 
 @receiver(post_save, sender=Notification)

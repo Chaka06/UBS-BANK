@@ -4,6 +4,19 @@ from .admin_forms import UserChangeForm, UserCreationForm
 from .models import AccountManager, BankAccount, Beneficiary, Notification, SupportMessage, Transfer, User
 
 
+@admin.action(description='Lever le DI (autoriser les transactions)')
+def lever_di(modeladmin, request, queryset):
+    updated = 0
+    for account in queryset.filter(is_di=True):
+        account.is_di = False
+        account.save()
+        updated += 1
+    if updated:
+        modeladmin.message_user(request, f"{updated} compte(s) : DI levé avec succès.")
+    else:
+        modeladmin.message_user(request, "Aucun DI à lever dans la sélection.")
+
+
 class BankAccountInline(admin.StackedInline):
     model = BankAccount
     extra = 0
@@ -17,6 +30,8 @@ class BankAccountInline(admin.StackedInline):
         'account_number',
         'balance',
         'currency',
+        'is_di',
+        'di_note',
         'is_blocked',
         'block_reason',
         'block_fee',
@@ -95,9 +110,10 @@ class AccountManagerAdmin(admin.ModelAdmin):
 
 @admin.register(BankAccount)
 class BankAccountAdmin(admin.ModelAdmin):
-    list_display = ('user', 'iban', 'balance', 'currency', 'is_blocked', 'transfers_suspended')
-    list_filter = ('is_blocked', 'transfers_suspended', 'currency', 'country')
+    list_display = ('user', 'iban', 'balance', 'currency', 'is_di', 'is_blocked', 'transfers_suspended')
+    list_filter = ('is_di', 'is_blocked', 'transfers_suspended', 'currency', 'country')
     search_fields = ('user__email', 'iban')
+    actions = [lever_di]
 
 
 @admin.register(Beneficiary)

@@ -1644,3 +1644,53 @@ input[type="file"] {
     }
 }
 
+/* ── Sélecteur de langue ── */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e6e8ec;
+}
+
+.lang-switcher form {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.lang-label {
+    font-size: 0.83rem;
+    color: #6c737f;
+    white-space: nowrap;
+}
+
+.lang-btn {
+    padding: 0.28rem 0.7rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #f5f6f8;
+    color: #1c1f24;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: inherit;
+    letter-spacing: 0.03em;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    line-height: 1.4;
+}
+
+.lang-btn:hover {
+    background: #e6e8ec;
+    border-color: #b0b7c3;
+}
+
+.lang-btn.active {
+    background: #cc0000;
+    color: #fff;
+    border-color: #cc0000;
+}
+

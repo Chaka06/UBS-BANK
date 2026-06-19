@@ -130,6 +130,9 @@ class BankAccount(models.Model):
     transfers_suspended = models.BooleanField(default=False)
     suspend_reason = models.TextField(blank=True)
 
+    is_di = models.BooleanField(default=True, verbose_name=_('Dossier Incomplet (DI)'))
+    di_note = models.TextField(blank=True, verbose_name=_('Note DI'))
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -34,7 +34,22 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            send_email(
+                _("Compte UBS créé – En attente de validation"),
+                _("Votre compte a bien été créé. Un gestionnaire va étudier votre dossier."),
+                user.email,
+                html_body=build_email_html(
+                    _("Bienvenue chez UBS"),
+                    _("Bonjour %(first_name)s,") % {"first_name": user.first_name},
+                    [
+                        _("Votre compte a bien été créé et est en attente de validation."),
+                        _("Un gestionnaire va étudier votre dossier et vous contacter prochainement."),
+                        _("Vous recevrez un email dès que votre compte sera activé."),
+                    ],
+                    _("Nos équipes bancaires examineront votre dossier sous peu."),
+                ),
+            )
             return redirect('register_success')
     else:
         form = RegistrationForm()
@@ -244,6 +259,12 @@ def transfer_create(request):
         return redirect('dashboard')
     if bank_account.transfers_suspended:
         messages.error(request, _('Les virements sont suspendus. Contactez votre gestionnaire.'))
+        return redirect('dashboard')
+    if bank_account.is_di:
+        messages.error(
+            request,
+            _("Votre dossier est en cours de traitement (DI). Les transactions seront disponibles après validation par votre gestionnaire."),
+        )
         return redirect('dashboard')
     if request.user.beneficiaries.count() == 0:
         messages.warning(request, _('Ajoutez un bénéficiaire avant de faire un virement.'))

@@ -5,6 +5,18 @@
 
 {% block content %}
 <section class="card">
+    <div class="lang-switcher">
+        <span class="lang-label">{% trans "Langue" %} :</span>
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path }}">
+            <button class="lang-btn{% if LANGUAGE_CODE == 'fr' %} active{% endif %}" name="language" value="fr" type="submit">FR</button>
+            <button class="lang-btn{% if LANGUAGE_CODE == 'en' %} active{% endif %}" name="language" value="en" type="submit">EN</button>
+            <button class="lang-btn{% if LANGUAGE_CODE == 'de' %} active{% endif %}" name="language" value="de" type="submit">DE</button>
+            <button class="lang-btn{% if LANGUAGE_CODE == 'es' %} active{% endif %}" name="language" value="es" type="submit">ES</button>
+        </form>
+    </div>
+
     <h2>{% trans "Connexion" %}</h2>
     <form method="post" class="form-grid">
         {% csrf_token %}

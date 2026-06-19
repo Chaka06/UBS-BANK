@@ -657,3 +657,54 @@ msgstr "Verarbeitet"
 
 msgid "Rejetée"
 msgstr "Abgelehnt"
+
+msgid "Dossier Incomplet (DI)"
+msgstr "Unvollständige Akte (DI)"
+
+msgid "Note DI"
+msgstr "DI-Notiz"
+
+msgid "Votre dossier est en cours de traitement (DI). Les transactions seront disponibles après validation par votre gestionnaire."
+msgstr "Ihre Akte wird bearbeitet (DI). Transaktionen sind nach Validierung durch Ihren Berater verfügbar."
+
+msgid "Votre dossier est en cours de traitement (DI). Votre gestionnaire vous contactera pour valider vos transactions."
+msgstr "Ihre Akte wird bearbeitet (DI). Ihr Berater wird Sie kontaktieren, um Ihre Transaktionen zu validieren."
+
+msgid "Dossier validé – Transactions autorisées"
+msgstr "Akte validiert – Transaktionen freigegeben"
+
+msgid "Dossier validé"
+msgstr "Akte validiert"
+
+msgid "Votre dossier a été validé par votre gestionnaire."
+msgstr "Ihre Akte wurde von Ihrem Berater validiert."
+
+msgid "Vous pouvez désormais effectuer des virements."
+msgstr "Sie können nun Überweisungen durchführen."
+
+msgid "Votre dossier a été validé. Vous pouvez désormais effectuer des transactions."
+msgstr "Ihre Akte wurde validiert. Sie können nun Transaktionen durchführen."
+
+msgid "Compte UBS créé – En attente de validation"
+msgstr "UBS-Konto erstellt – Validierung ausstehend"
+
+msgid "Bienvenue chez UBS"
+msgstr "Willkommen bei UBS"
+
+msgid "Votre compte a bien été créé et est en attente de validation."
+msgstr "Ihr Konto wurde erfolgreich erstellt und wartet auf Validierung."
+
+msgid "Un gestionnaire va étudier votre dossier et vous contacter prochainement."
+msgstr "Ein Berater wird Ihre Akte prüfen und sich bald mit Ihnen in Verbindung setzen."
+
+msgid "Vous recevrez un email dès que votre compte sera activé."
+msgstr "Sie erhalten eine E-Mail, sobald Ihr Konto aktiviert ist."
+
+msgid "Nos équipes bancaires examineront votre dossier sous peu."
+msgstr "Unsere Bankenteams werden Ihre Akte in Kürze prüfen."
+
+msgid "Votre compte a bien été créé. Un gestionnaire va étudier votre dossier."
+msgstr "Ihr Konto wurde erstellt. Ein Berater wird Ihre Akte prüfen."
+
+msgid "Langue"
+msgstr "Sprache"

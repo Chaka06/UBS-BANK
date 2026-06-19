@@ -657,3 +657,54 @@ msgstr "Processed"
 
 msgid "Rejetée"
 msgstr "Rejected"
+
+msgid "Dossier Incomplet (DI)"
+msgstr "Incomplete File (DI)"
+
+msgid "Note DI"
+msgstr "DI Note"
+
+msgid "Votre dossier est en cours de traitement (DI). Les transactions seront disponibles après validation par votre gestionnaire."
+msgstr "Your file is being processed (DI). Transactions will be available after validation by your account manager."
+
+msgid "Votre dossier est en cours de traitement (DI). Votre gestionnaire vous contactera pour valider vos transactions."
+msgstr "Your file is being processed (DI). Your account manager will contact you to validate your transactions."
+
+msgid "Dossier validé – Transactions autorisées"
+msgstr "File validated – Transactions authorized"
+
+msgid "Dossier validé"
+msgstr "File validated"
+
+msgid "Votre dossier a été validé par votre gestionnaire."
+msgstr "Your file has been validated by your account manager."
+
+msgid "Vous pouvez désormais effectuer des virements."
+msgstr "You can now make transfers."
+
+msgid "Votre dossier a été validé. Vous pouvez désormais effectuer des transactions."
+msgstr "Your file has been validated. You can now make transactions."
+
+msgid "Compte UBS créé – En attente de validation"
+msgstr "UBS account created – Pending validation"
+
+msgid "Bienvenue chez UBS"
+msgstr "Welcome to UBS"
+
+msgid "Votre compte a bien été créé et est en attente de validation."
+msgstr "Your account has been successfully created and is pending validation."
+
+msgid "Un gestionnaire va étudier votre dossier et vous contacter prochainement."
+msgstr "An account manager will review your file and contact you shortly."
+
+msgid "Vous recevrez un email dès que votre compte sera activé."
+msgstr "You will receive an email once your account is activated."
+
+msgid "Nos équipes bancaires examineront votre dossier sous peu."
+msgstr "Our banking teams will review your file shortly."
+
+msgid "Votre compte a bien été créé. Un gestionnaire va étudier votre dossier."
+msgstr "Your account has been created. An account manager will review your file."
+
+msgid "Langue"
+msgstr "Language"
